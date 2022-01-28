@@ -1,3 +1,13 @@
+:root{
+    --strongGray: #e2ebf3;
+    --softBlue: #bbdefb;
+    --strongBlue: #167ee5;
+    --purple: #344861;
+    --grey: #8894a1;
+    --softWhite: #f3f6fa;
+    --white: #FFFFFF;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
