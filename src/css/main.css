@@ -203,3 +203,61 @@ main{
 .game__information__div ul li:first-child{
     margin-top: 0;
 }
+
+/* Footer */
+footer{
+    margin-top: 65px;
+    width: 100%;
+    height: 100%;
+    background-color: #1d2735;
+    padding: 40px 0 15px 0;
+    text-align: center;
+    color: var(--softGrey);
+}
+
+.footer__logo{
+    margin-bottom: 30px;
+}
+
+.footer__easybrainLogo{
+    width: 120px;
+    height: 28px;
+    margin-bottom: 10px;
+}
+
+.footer__nav__list__item, .footer__coppyRight{
+    color: var(--softGrey);
+}
+
+.footer__coppyRight{
+    font-size: 1.3rem;
+}
+
+.footer__nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.footer__nav__list .footer__nav__list__item{
+    margin-right: 20px;
+    color: white;
+    margin-bottom: 12px;
+    padding: 6px;
+}
+
+.footer__nav__list__item:hover{
+    border-bottom: 2px solid var(--strongBlue);
+}
+
+.footer__nav__list:last-child{
+    margin-right: 0px;
+}
+
+.footer--appleCopyRight{
+    font-size: 1.2rem;
+    margin-top: 15px;
+    padding: 15px 10px 0px 10px;
+    border-top: 1px solid #fbfdff25;
+}
