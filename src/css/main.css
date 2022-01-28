@@ -4,6 +4,8 @@
     --strongBlue: #167ee5;
     --purple: #344861;
     --grey: #8894a1;
+    --softGrey: #94a3b7;
+
     --softWhite: #f3f6fa;
     --white: #FFFFFF;
 
@@ -90,5 +92,76 @@ header{
     color: var(--strongBlue);
     font-weight: bold;
     cursor: pointer;
+    white-space: nowrap;
 }
 
+/* Main */
+main{
+    width: 100%;
+    height: 100%;
+}
+
+.game{
+    width: 95%;
+    margin: 20px auto 0 auto;
+}
+
+.game__settings{
+    display: grid;
+    grid-template-columns: 82px 1fr 100px;
+    gap: 20px;
+}
+
+.game__settings__timer{
+    display: flex;
+    align-items: center;
+    justify-self: end;
+}
+
+.game__settings__timer button{
+    display: grid;
+    place-content: center;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.game__settings__timer button span{
+    background-image: url('/src/assets/icon/game-icons.webp');
+    background-repeat: no-repeat;
+    background-size: 784.8484% 703.0303%;
+    width: 11px;
+    height: 11px;
+}
+
+.game__settings__timer__counter{
+    margin-right: 13px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--softGrey);
+}
+
+.game__settings__timer__pauseIcon{
+    background-position: 47.3451% 94.9748%;
+}
+
+.game__settings__timer__playIcon{
+    background-position: 62.3893% 94.9748%;
+}
+
+.game .game__settings .game__settings__timer .no-display{
+    display: none;
+}
+
+.game__settings__checkMistakes{
+    display: grid;
+    place-content:  center;
+}
+
+/* Canvas */
+.game__content{
+    width: 100%;
+    height: 100%;
+}

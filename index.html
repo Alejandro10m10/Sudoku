@@ -29,30 +29,32 @@
         </nav>
     </header>
     <main>
-        <section>
-            <div>
+        <section class="game">
+            <div class="game__settings">
                 <select name="game-difficult" id="difficult-select">
                     <option value="0" selected="selected">Easy</option>
-                    <option value="1" selected="selected">Medium</option>
-                    <option value="2" selected="selected">Hard</option>
-                    <option value="3" selected="selected">Expert</option>
-                    <option value="4" selected="selected">Evil</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Hard</option>
+                    <option value="3">Expert</option>
+                    <option value="4">Evil</option>
                 </select>
-                <div>
-                    <input type="checkbox" checked>
+                <div class="game__settings__checkMistakes">
+                    <input id="checkMistakes" type="checkbox" checked>
                     <span></span>
                 </div>
-                <div>
-                    <p>
-                        <span>00</span>:
-                        <span>00</span>:
-                        <span>00</span>
+                <div class="game__settings__timer">
+                    <p class="game__settings__timer__counter">
+                        <span>00</span>:<span>00</span>:<span>00</span>
                     </p>
-                    <button id="btnPauseGame"></button>
-                    <button id="btnPlayGame"></button>
+                    <button id="btnPauseGame">
+                        <span class="game__settings__timer__pauseIcon"></span>
+                    </button>
+                    <button id="btnPlayGame" class="no-display">
+                        <span class="game__settings__timer__playIcon"></span>
+                    </button>
                 </div>
             </div>
-            <canvas>
+            <canvas class="game__content" width="625" height="625">
 
             </canvas>
             <div>
