@@ -6,6 +6,9 @@
     --grey: #8894a1;
     --softWhite: #f3f6fa;
     --white: #FFFFFF;
+
+    --primaryFont: 'Source Sans Pro', sans-serif;
+
 }
 
 *{
@@ -16,6 +19,7 @@
 
 html{
     font-size: 62.5%;
+    font-family: var(--primaryFont);
 }
 
 body{
