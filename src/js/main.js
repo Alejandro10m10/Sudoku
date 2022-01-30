@@ -51,7 +51,28 @@ function isValidNumberPlacement(board, row, column, number){
            !isNumberInBox(board, row, column, number);
 }
 
-console.log(isNumberInRow(board, 0, 3));
-console.log(isNumberInColumn(board, 1, 3));
-console.log(isNumberInBox(board, 8, 8, 7));
-console.log(isValidNumberPlacement(board, 0, 1, 3))
+function solveBoard(board){
+	for(let row = 0; row < BOARD_SIZE ; row++){
+		for(let column = 0; column < BOARD_SIZE ; column++){
+			if(board[row][column] === 0){
+				 for(let candidateNumber = 1 ; candidateNumber <= BOARD_SIZE ; candidateNumber++){
+					 if(isValidNumberPlacement(board, row, column, candidateNumber)){
+						  board[row][column] = candidateNumber;
+						  
+						 if(solveBoard(board)){
+							  return true;
+						 }else{
+						 		board[row][column] = 0;
+					 	  }	
+					 }
+				 }
+				 return false;
+			}
+		}
+	}
+	return true;
+}
+
+
+solveBoard(board);
+console.log(board);
