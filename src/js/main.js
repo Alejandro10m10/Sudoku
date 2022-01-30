@@ -45,6 +45,13 @@ function isNumberInBox(board, row, column, number){
 	return false;
 }
 
+function isValidNumberPlacement(board, row, column, number){
+    return !isNumberInRow(board, row, number) &&
+           !isNumberInColumn(board, column, number) &&
+           !isNumberInBox(board, row, column, number);
+}
+
 console.log(isNumberInRow(board, 0, 3));
 console.log(isNumberInColumn(board, 1, 3));
 console.log(isNumberInBox(board, 8, 8, 7));
+console.log(isValidNumberPlacement(board, 0, 1, 3))
