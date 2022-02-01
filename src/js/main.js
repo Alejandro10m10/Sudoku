@@ -74,5 +74,44 @@ function solveBoard(board){
 }
 
 
-solveBoard(board);
-console.log(board);
+//solveBoard(board);
+//console.log(board);
+
+/* Change the color of the box or mini-box which was selected */
+let boxes = document.querySelectorAll('.game__box');
+let miniBoxes = document.querySelectorAll('.game__box__inside');
+
+init();
+
+function init(){
+	addEventBoxListener(boxes);
+	addEventMiniBoxListener(miniBoxes);
+}
+
+function addEventBoxListener(boxes){
+	for(let i = 0; i < boxes.length ; i++){
+		let box = boxes[i];
+		box.addEventListener('click', () => addSelectBox(boxes, box, 'box-selected') );
+	}
+}
+
+function addEventMiniBoxListener(miniBoxes){
+	for(let i = 0; i < miniBoxes.length ; i++){
+		let miniBox = miniBoxes[i];
+		miniBox.addEventListener('click', () => addSelectBox(miniBoxes, miniBox, 'box-inside-selected') );
+	}
+}
+
+function addSelectBox(box, boxArray, className){
+	removeSelectBox(box, className);
+	boxArray.classList.add(className);
+}
+
+function removeSelectBox(boxArray, className){
+	for(let i = 0; i < boxArray.length ; i++){
+		let box = boxArray[i];
+		if(box.classList.contains(className)){
+			box.classList.remove(className);
+		}
+	}
+}
