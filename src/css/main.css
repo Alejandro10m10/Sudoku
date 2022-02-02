@@ -171,14 +171,15 @@ main{
 .game__content{
     height:  100%;
     display: grid;
-    grid-template-rows: repeat(3, auto);
-    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     border: 2.5px solid var(--purple);
 }
 
 .game__box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     border-bottom: 2.5px solid var(--purple);
     border-right: 2.5px solid var(--purple);
 }
@@ -210,7 +211,9 @@ main{
     font-size: 2rem;
     color: var(--purple);
     cursor: default;
-    
+}
+
+.disable-selected{
     /* disable-selected */
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */

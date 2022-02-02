@@ -77,6 +77,23 @@ function solveBoard(board){
 //solveBoard(board);
 //console.log(board);
 
+/* Fill the board */ 
+function fillBoard(board){
+	for(let row = 0; row < BOARD_SIZE ; row++){
+		for(let column = 0; column < BOARD_SIZE ; column++){
+			let box = boxes[row].children;
+			let element = box[column];
+			let number = board[row][column];
+			let paragraph = element.childNodes[0];
+			if(number !== 0){
+				paragraph.innerHTML = board[row][column];
+			} else{
+				paragraph.innerHTML = "";
+			}
+		}
+	}
+}
+
 /* Change the color of the box or mini-box which was selected */
 let boxes = document.querySelectorAll('.game__box');
 let miniBoxes = document.querySelectorAll('.game__box__inside');
@@ -86,6 +103,7 @@ init();
 function init(){
 	addEventBoxListener(boxes);
 	addEventMiniBoxListener(miniBoxes);
+	fillBoard(board);
 }
 
 function addEventBoxListener(boxes){
