@@ -166,6 +166,7 @@ main{
 .game__container{
     width: 250px;
     height: 250px;
+    margin: 0 auto;
 }
 
 .game__content{
@@ -288,6 +289,112 @@ main{
 .game__information__div ul li:first-child{
     margin-top: 0;
 }
+
+/* Game controlls */
+.game__controlls{
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.game__controlls__items{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    margin-bottom: 20px;
+}
+
+.game__controlls__item{
+    display: grid;
+    place-items: center;
+}
+
+.game__controlls__item button{
+    max-width: 54px;
+    max-height: 54px;
+    border-radius: 50%;
+    padding: 11px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.game__controlls__item button svg{
+    width: 100%;
+    height: 100%;
+}
+
+.game__controlls__item p{
+    color: var(--strongBlue);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.game__controlls__item__offButton{
+    position: relative;
+}
+
+.game__controlls__item__offButton__span{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    width: 30px;
+    height: 24px;
+    background-color: rgb(173, 182, 194);
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.game__controlls__numbers{
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+}
+
+.game__controlls__numbers button{
+    font-size: 3rem;
+    color: var(--strongBlue);
+    cursor: pointer;
+    border: none;
+    padding: 4px 5px;
+    border-radius: 5px;
+    background-color: var(--white);
+}
+
+.game__controlls__numbers button:hover{
+    background-color: var(--strongGray);
+}
+
+/* Advert */
+.advert{
+    width: 100%;
+    height: 100%;
+    background-color: #f3f6fa;
+    margin: 25px auto 0px auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(2, 1fr);
+    border-radius: 5px;
+}
+
+.advert__appLogo{
+    display: grid;
+    place-self: center;
+}
+
+.advert__appInformation{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-self: center;
+}
+
+
 
 /* Footer */
 footer{

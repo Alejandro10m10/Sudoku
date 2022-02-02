@@ -1,4 +1,7 @@
 const BOARD_SIZE = 9;
+let boxes = document.querySelectorAll('.game__box');
+let miniBoxes = document.querySelectorAll('.game__box__inside');
+let boxesArray = [];
 
 let board = [
 	[7,0,2,0,5,0,6,0,0],
@@ -12,6 +15,16 @@ let board = [
 	[0,0,7,0,4,0,2,0,3],
 ];
 
+/* Init the game */
+init();
+
+function init(){
+	addEventBoxListener(boxes);
+	addEventMiniBoxListener(miniBoxes);
+	fillBoard(board);
+}
+
+/* Solve the sudoku board */
 
 function isNumberInRow(board, row, number){
 	for(let i = 0; i < BOARD_SIZE ; i++){
@@ -105,8 +118,6 @@ function coverBoxRow(row, start, finish){
 	putNumberInBox(boxesArray, start, finish);
 }
 
-let boxesArray = [];
-
 function iterationRowBoard(iteration, limit, box){
 	for(iteration; iteration < limit ; iteration++){
 		let element = box[iteration];
@@ -134,16 +145,6 @@ function putNumberInBox(array, start, finish){
 }
 
 /* Change the color of the box or mini-box which was selected */
-let boxes = document.querySelectorAll('.game__box');
-let miniBoxes = document.querySelectorAll('.game__box__inside');
-
-init();
-
-function init(){
-	addEventBoxListener(boxes);
-	addEventMiniBoxListener(miniBoxes);
-	fillBoard(board);
-}
 
 function addEventBoxListener(boxes){
 	for(let i = 0; i < boxes.length ; i++){
