@@ -79,19 +79,58 @@ function solveBoard(board){
 
 /* Fill the board */ 
 function fillBoard(board){
-	for(let row = 0; row < BOARD_SIZE ; row++){
-		for(let column = 0; column < BOARD_SIZE ; column++){
-			let box = boxes[row].children;
-			let element = box[column];
-			let number = board[row][column];
-			let paragraph = element.childNodes[0];
-			if(number !== 0){
-				paragraph.innerHTML = board[row][column];
-			} else{
-				paragraph.innerHTML = "";
-			}
+	coverBoxRow(0, 0, 3);
+	coverBoxRow(3, 3, 6);
+	coverBoxRow(6, 6, 9);
+}
+function coverBoxRow(row, start, finish){
+	let i = 0;
+	let iteration = 0;
+	let limit = 3;
+
+	boxesArray = [];
+
+	while(i < 9){
+		let box = boxes[row].children;
+		iterationRowBoard(iteration, limit, box);
+		row++;
+
+		if(row == finish){
+			row = start;
+			iteration += 3;
+			limit+=3;
+		} 
+		i++;
+	}
+	putNumberInBox(boxesArray, start, finish);
+}
+
+let boxesArray = [];
+
+function iterationRowBoard(iteration, limit, box){
+	for(iteration; iteration < limit ; iteration++){
+		let element = box[iteration];
+		boxesArray.push(element);
+	}
+}
+
+function putNumberInBox(array, start, finish){
+	let boardArrayNumbers = []
+	for(let j = start; j < finish ; j++){
+		for(let k = 0 ; k < BOARD_SIZE ; k++){
+			boardArrayNumbers.push(board[j][k]);
 		}
 	}
+	
+	for(let i = 0; i < array.length ; i++){
+		let paragraph = array[i].childNodes[0];
+		if(boardArrayNumbers[i] !== 0){
+			paragraph.innerHTML = boardArrayNumbers[i];
+		} else{
+			paragraph.innerHTML = "";
+		}
+	}
+
 }
 
 /* Change the color of the box or mini-box which was selected */
