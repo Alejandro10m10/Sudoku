@@ -1,6 +1,7 @@
 const BOARD_SIZE = 9;
 let boxes = document.querySelectorAll('.game__box');
 let miniBoxes = document.querySelectorAll('.game__box__inside');
+let numbers = document.querySelectorAll('.btnNumbers');
 let boxesArray = [];
 
 let board = [
@@ -19,6 +20,7 @@ let board = [
 init();
 
 function init(){
+	setButtonsEvent();
 	addEventBoxListener(boxes);
 	addEventMiniBoxListener(miniBoxes);
 	fillBoard(board);
@@ -145,7 +147,6 @@ function putNumberInBox(array, start, finish){
 }
 
 /* Change the color of the box or mini-box which was selected */
-
 function addEventBoxListener(boxes){
 	for(let i = 0; i < boxes.length ; i++){
 		let box = boxes[i];
@@ -172,4 +173,17 @@ function removeSelectBox(boxArray, className){
 			box.classList.remove(className);
 		}
 	}
+}
+
+/* Get the number which was selected by the user */
+function setButtonsEvent(){
+	for(number of numbers){
+		let numberId = number.id;
+		let numberElement = document.querySelector('#' + numberId);
+		numberElement.addEventListener('click', () => putNumberInBoard(parseInt(numberElement.value)));
+	}
+}
+
+function putNumberInBoard(number){
+	console.log(number);
 }
