@@ -5,6 +5,8 @@ let sec = 0,
     hrs = 0,
     t;
 
+let hrsAndMin;
+
 initClock();
 
 function initClock(){
@@ -26,9 +28,13 @@ function clock(){
 function showClock(){
     clock();
 
-    timerElement.textContent = (hrs > 9 ? hrs : "0" + hrs) 
-                            + ":" + (min > 9 ? min : "0" + min)
-                            + ":" + (sec > 9 ? sec : "0" + sec);
+    hrsAndMin = (min > 9 ? min : "0" + min)
+                + ":" + (sec > 9 ? sec : "0" + sec);
+
+    (hrs == 0) 
+        ?  timerElement.textContent = hrsAndMin
+        : timerElement.textContent = (hrs > 9 ? hrs : "0" + hrs) 
+                                    + ":" + hrsAndMin;
 
     timer();
 }
