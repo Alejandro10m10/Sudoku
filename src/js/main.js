@@ -185,5 +185,9 @@ function setButtonsEvent(){
 }
 
 function putNumberInBoard(number){
-	console.log(number);
+	let boxSelected = document.querySelector('.box-inside-selected');
+	let boxParagraphNumber = boxSelected.childNodes[0];
+	boxParagraphNumber.innerHTML = number;
+
 }
+
