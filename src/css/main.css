@@ -76,6 +76,7 @@ header{
 .navigation__list__menuIcon{
     width: 20px;
     height: 12px;
+    cursor: pointer;
 }
 
 .navigation__list__logo{
@@ -83,6 +84,7 @@ header{
     height: 22px;
     display: grid;
     justify-self: start;
+    cursor: pointer;
 }
 
 #btnNewGame{
@@ -105,7 +107,7 @@ main{
 
 .game{
     width: 95%;
-    margin: 20px auto 0 auto;
+    margin: 10px auto 0 auto;
 }
 
 .game__settings{
@@ -144,6 +146,7 @@ main{
     font-size: 1.6rem;
     font-weight: bold;
     color: var(--softGrey);
+    cursor: default;
 }
 
 .game__settings__timer__pauseIcon{
@@ -249,6 +252,11 @@ input:checked + .slider .toggleSwitch__icon:before{
     background-repeat: no-repeat;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+.game__settings__checkMistakes{
+    display: grid;
+    place-content: center;
 }
 
 .game__settings__checkMistakes__label{
