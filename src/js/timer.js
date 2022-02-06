@@ -3,6 +3,7 @@ let timerElement = document.querySelector('#gameTime'),
     playGame = document.querySelector('#btnPlayGame');
 
 pauseGame.addEventListener('click', pauseTimer);
+playGame.addEventListener('click', playTimer);
 
 let sec = 0,
     min = 0,
@@ -51,6 +52,12 @@ function pauseTimer(){
     clearTimeout(t);
     displayElement(pauseGame, false);
     displayElement(playGame, true);
+}
+
+function playTimer(){
+    timer();
+    displayElement(pauseGame, true);
+    displayElement(playGame, false);
 }
 
 function displayElement(element, value){
