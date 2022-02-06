@@ -1,4 +1,8 @@
-let timerElement = document.querySelector('#gameTime');
+let timerElement = document.querySelector('#gameTime'),
+    pauseGame = document.querySelector('#btnPauseGame')
+    playGame = document.querySelector('#btnPlayGame');
+
+pauseGame.addEventListener('click', pauseTimer);
 
 let sec = 0,
     min = 0,
@@ -41,4 +45,16 @@ function showClock(){
 
 function timer(){
     t = setTimeout(showClock, 1000);
+}
+
+function pauseTimer(){
+    clearTimeout(t);
+    displayElement(pauseGame, false);
+    displayElement(playGame, true);
+}
+
+function displayElement(element, value){
+    (value) 
+        ? element.classList.remove('no-display') 
+        : element.classList.add('no-display');
 }
