@@ -294,13 +294,15 @@ input:checked + .slider .toggleSwitch__icon:before{
 
 /* Canvas */
 .game__container{
+    width: 100%;
     display: grid;
-    place-content: center;
+    grid-template-rows: auto auto;
 }
 
 .game__content{
     width: 250px;
     height: 250px;
+    margin: 0 auto;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3,  1fr);
@@ -475,7 +477,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     grid-template-columns: repeat(9, 1fr);
 }
 
-.game__controlls__numbers button{
+.btnNumbers{
     font-size: 8vw;
     color: var(--strongBlue);
     cursor: pointer;
@@ -485,7 +487,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     background-color: var(--white);
 }
 
-.game__controlls__numbers button:hover{
+.btnNumbers:hover{
     background-color: var(--strongGray);
 }
 
@@ -628,7 +630,6 @@ footer{
     .game__content{
         width: 464px;
         height: 464px;
-        margin: auto;
     }
     
     .number{
@@ -636,7 +637,6 @@ footer{
     }
 
     .game{
-        width: 80%;
         margin: 10px auto 0 auto;
     }
     
@@ -669,6 +669,47 @@ footer{
 
     .switch{
         left: 10px;
+    }
+
+    .game__container{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 20px;
+    }
+
+    .game__content{
+        width: 345px;
+        height: 345px;
+        place-self: center;
+    }
+
+    .game__controlls{
+        margin-top: 0;
+    }
+
+    .game__controlls__numbers{
+        grid-template-columns: repeat(3, 96px);
+        gap: 5px;
+    }
+
+    .game__controlls__numbers{
+        place-content: center;
+    }
+
+    .btnNumbers{
+        background-color: #eaeef4;
+        color: var(--strongBlue);
+        height: 82px;
+        font-size: 3.5rem;
+        font-weight: lighter;
+    }
+
+    .number{
+        font-size: 2rem;
+    }
+
+    .game__information{
+        margin-top: 10px;
     }
     
 }
