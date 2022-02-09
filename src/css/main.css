@@ -410,6 +410,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     margin-top: 0;
 }
 
+
 /* Game controlls */
 .game__controlls{
     width: 100%;
@@ -642,6 +643,17 @@ footer{
 }
 
 @media (min-width: 722px) {
+
+    .game__content{
+        width: 324px;
+        height: 324px;
+        place-self: center;
+    }
+
+    .number{
+        font-size: 2.5rem;
+    }
+
     .game__settings .game-difficult__label,
     .game__settings__checkMistakes .game__settings__checkMistakes__label{
         display: inline-block;
@@ -677,17 +689,17 @@ footer{
     }
     
     .game__controlls{
+        height: 100%;
         margin-top: 15px;
     }
 
     .game__controlls__numbers{
         width: 100%;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
-    }
-
-    .game__controlls__numbers{
+        height: 78%;
         place-content: center;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
     }
 
     .btnNumbers{
@@ -714,4 +726,55 @@ footer{
         place-content: center;
     }
     
+}
+
+
+@media (min-width: 860px) {
+
+    .game__container{
+        margin-top: 20px;
+    }
+
+    .game__content{
+        width: 464px;
+        height: 464px;
+    }
+
+    .number{
+        font-size: 3.5rem;
+    }
+}
+
+@media (min-width: 980px) {
+
+    .game__controlls{
+        margin-top: 0;
+        display: grid;
+        grid-template-areas: "button"
+                             "controlls"
+                             "buttons";
+    }
+
+    .game__controlls__items{
+        grid-area: "controlls";
+        margin: 10px;
+    }
+
+    .game__controlls__numbers{
+        grid-area: "buttons";
+        height: auto;
+    }
+
+    #btnNewGame{
+        display: grid;
+        grid-area: "button";
+        width: 100%;
+        height: 60px;
+        margin-bottom: 10px;
+        place-content: center;
+        background-color: var(--strongBlue);
+        border-radius: 5px;
+        color: var(--white);
+
+    }
 }
