@@ -5,6 +5,11 @@ let timerElement = document.querySelector('#gameTime'),
 
 pauseGame.addEventListener('click', pauseTimer);
 playGame.addEventListener('click', playTimer);
+newGameEventListener(newGame);
+
+function newGameEventListener(element){
+    element.addEventListener('click', resetTimer);
+}
 
 let sec = 0,
     min = 0,
@@ -53,6 +58,11 @@ function pauseTimer(){
     clearTimeout(t);
     displayElement(pauseGame, false);
     displayElement(playGame, true);
+}
+
+function resetTimer(){
+    timerElement.textContent = "00:00";
+    sec = 0; min = 0; hrs = 0;
 }
 
 function playTimer(){

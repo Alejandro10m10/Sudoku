@@ -23,6 +23,8 @@ function changePlaceElement(element, moveFrom, moveTo, value){
     let clone = element.cloneNode(true);
     moveTo.prepend(clone);
     moveFrom.removeChild(element);
+
+    newGameEventListener(clone);
 }
 
 
