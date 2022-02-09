@@ -824,6 +824,11 @@ footer{
         display: grid;
         place-content: center;
         font-size: 1.65rem;
+        
+    }
+
+    .navigation__list__desktop__anchor,
+    .mode-menu-dropdown__item span{
         color: rgb(110, 124, 140);
         font-weight: 600;
     }
@@ -877,7 +882,7 @@ footer{
         gap: 10px;
     }
 
-    .mode-menu svg{
+    .mode-menus svg{
         width: 24px;
         height: 24px;
         fill: #6e7c8c!important ;
@@ -896,6 +901,50 @@ footer{
         background-image: url('https://sudoku.com/build/images/sprite.8f6a561f.svg');
         background-position: 55% 87%;
     }
+
+    .mode-menus{
+        display: grid;
+        place-content: center;
+    }
+    .mode-menu{
+        position: relative;
+    }
+
+    .mode-menu-dropdown{
+        width: 130px;
+        height: auto;
+        position: absolute;
+        top: 66px;
+        z-index: 1;
+        background-color: var(--white);
+        padding: 5px 0;
+        box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%);
+        border-radius: 5px;
+    }
+
+    .mode-menus .navigation__list__desktop__anchor__block{
+        padding: 8px 15px;
+    }
+
+    .mode-menu-dropdown__list:hover{
+        background-color: var(--strongGray);
+    }
+
+    .mode-menu-dropdown__item{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .mode-menu-dropdown__list{
+        padding: 5px 30px 5px 10px;
+    }
+
+    .mode-menu-dropdown__item .mode-menu__icon{
+        margin-right: 12px;
+    }
+
+
 
     header{
         width: 100%;
