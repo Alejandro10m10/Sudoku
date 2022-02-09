@@ -828,9 +828,14 @@ footer{
     }
 
     .navigation__list__desktop__anchor,
-    .mode-menu-dropdown__item span{
+    .mode-menu-dropdown__item span,
+    .language-menu-dropdown__item span{
         color: rgb(110, 124, 140);
         font-weight: 600;
+    }
+
+    .language-menu-dropdown__list{
+        height: 35.4px;
     }
 
     .navigation__list__desktop--tips{
@@ -894,43 +899,58 @@ footer{
         height: 6px;
     }
 
-    .mode-menu__countryFlag{
+    .language-menu__countryFlag{
         display: inline-block;
         width: 22px;
         height: 15px;
         background-image: url('https://sudoku.com/build/images/sprite.8f6a561f.svg');
-        background-position: 55% 87%;
     }
 
-    .mode-menus{
+    .mode-menus,
+    .language-menu{
         display: grid;
         place-content: center;
     }
-    .mode-menu{
+
+    .mode-menu,
+    .language-menu{
         position: relative;
     }
 
-    .mode-menu-dropdown{
-        width: 130px;
+    .mode-menu-dropdown,
+    .language-menu-dropdown{
         height: auto;
         position: absolute;
-        top: 66px;
         z-index: 1;
-        background-color: var(--white);
         padding: 5px 0;
+        background-color: var(--white);
         box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%);
         border-radius: 5px;
     }
 
-    .mode-menus .navigation__list__desktop__anchor__block{
+    .mode-menu-dropdown{
+        top: 66px;
+        width: 132px;
+    }
+
+    .language-menu-dropdown{
+        top: 49px;
+        right: -28px;
+        width: 185px;
+    }
+
+    .mode-menus .navigation__list__desktop__anchor__block,
+    .language-menu .navigation__list__desktop__anchor__block{
         padding: 8px 15px;
     }
 
-    .mode-menu-dropdown__list:hover{
+    .mode-menu-dropdown__list:hover,
+    .language-menu-dropdown__list:hover{
         background-color: var(--strongGray);
     }
 
-    .mode-menu-dropdown__item{
+    .mode-menu-dropdown__item,
+    .language-menu-dropdown__item{
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -940,11 +960,88 @@ footer{
         padding: 5px 30px 5px 10px;
     }
 
-    .mode-menu-dropdown__item .mode-menu__icon{
+    .language-menu-dropdown__list{
+        padding: 9px 15px;
+    }
+
+    .mode-menu-dropdown__item .mode-menu__icon,
+    .language-menu-dropdown__item .language-menu__countryFlag{
         margin-right: 12px;
     }
 
+    /*Flags*/
+    .flag-en{
+        background-position: 55% 87%;;
+    }
 
+    .flag-jp{
+        background-position: 57.5% 55.2%;
+    }
+
+    .flag-it{
+        background-position: 39.166666666666664% 55.2%;
+    }
+
+    .flag-zh{
+        background-position: 100% 36%;
+    }
+
+    .flag-de{
+         background-position: 100% 60%;
+    }
+    
+    .flag-fr{
+         background-position: 20.833333333333332% 55.2%;
+    }
+    
+    .flag-es{
+         background-position: 0 87.2%;
+    }
+    
+    .flag-pt{
+         background-position: 36.666666666666664% 75.2%;
+    }
+    
+    .flag-tr{
+         background-position: 100% 12%;
+    }
+    
+    .flag-pl{
+         background-position: 18.333333333333332% 75.2%;
+    }
+    
+    .flag-ko{
+         background-position: 75.83333333333333% 55.2%;
+    }
+    
+    .flag-th{
+         background-position: 18.333333333333332% 87.2%;
+    }
+    
+    .flag-vi{
+         background-position: 100% 24%;
+    }
+    
+    .flag-ar{
+         background-position: 100% 48%;
+    }
+    
+    .flag-mx{
+         background-position: 0 75.2%;
+    }
+    
+    .flag-br{
+         background-position: 100% 0;
+    }
+    
+    .flag-tw{
+         background-position: 100% 36%;
+    }
+    
+    .flag-ru{
+         background-position: 55% 75.2%;
+    }
+    
 
     header{
         width: 100%;
