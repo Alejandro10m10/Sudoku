@@ -892,7 +892,7 @@ footer{
     }
 
     .navigation{
-        padding: 0 12%;
+        padding: 0 14.5%;
     }
     .game__content{
         width: 426px;
@@ -912,40 +912,44 @@ footer{
     }
 
     main{
+        position: relative;
         width: 780px;
         display: grid;
         grid-area: main;
         margin: 0 auto;
+        right: -2%;
     }
 
     aside{
         position: relative;
-        left: -40%;
-        width: 300px;
+        left: -2%;
+        max-width: 300px;
         display: grid;
         grid-area: aside;
         width: 100%;
         place-content: start;
     }
+
+    .adverts .advert{
+        display: none;
+    }
+
+    .advert{
+        margin-top: 10px;
+        grid-template-columns: 79px 1fr;
+        grid-template-rows: 1fr auto;
+        gap: 5px;
+    }
+
+    .advert__appDownloads{
+        grid-column: 1 / 3;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 }
 
-@media (min-width: 1100px) {
-    /*
-    main, .nav{
-        margin: 0 auto;
-    }
-
+@media (min-width: 1400px) {
     main{
-        width: 73%;
+        right: -10%;
     }
-
-    .nav{
-        width: 71%;
-        border: none;
-    }
-
-    header{
-        border-bottom: 2px solid var(--strongGray);
-    }
-    */
 }
