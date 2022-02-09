@@ -394,7 +394,7 @@ input:checked + .slider .toggleSwitch__icon:before{
 }
 
 .game__information__div{
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .game__information__div p,
@@ -663,7 +663,6 @@ footer{
     .game{
         margin: 10px auto 0 auto;
     }
-    
 }
 
 @media (min-width: 722px) {
@@ -749,7 +748,6 @@ footer{
         grid-template-columns: repeat(2, 1fr);
         place-content: center;
     }
-    
 }
 
 
@@ -765,6 +763,13 @@ footer{
 
     .number{
         font-size: 3.5rem;
+    }
+
+    .game__information{
+        margin-top: 65px;
+    }
+    .game__information__div{
+        margin-bottom: 65px;
     }
 }
 
@@ -807,7 +812,7 @@ footer{
         display: grid;
         grid-template-columns: repeat(5, auto);
         place-content: center;
-        gap: 0 60px;
+        gap: 0 20px;
         height: 42px;
     }
 
@@ -818,9 +823,9 @@ footer{
     .navigation__list__desktop__anchor{
         display: grid;
         place-content: center;
-        font-size: 1.6rem;
+        font-size: 1.65rem;
         color: rgb(110, 124, 140);
-        font-weight: bold;
+        font-weight: 600;
     }
 
     .navigation__list__desktop--tips{
@@ -841,7 +846,7 @@ footer{
         padding: 8px 15px;
     }
 
-    .navigation__list__desktop__anchor--trophy:hover{
+    .navigation__list__desktop__anchor__block:hover{
         background-color: var(--strongGray);
         border-radius: 5px;
     }
@@ -859,6 +864,37 @@ footer{
     .navigation__list__desktop__anchor--fbIcon{
         width: 34px;
         height: 34px;
+    }
+
+    /* Select icons */
+    .mode-menu{
+        cursor: pointer;
+        padding: 0 15px;
+        display: grid;
+        grid-template-columns: 24px auto auto;
+        place-content: center;
+        place-items: center;
+        gap: 10px;
+    }
+
+    .mode-menu svg{
+        width: 24px;
+        height: 24px;
+        fill: #6e7c8c!important ;
+    }
+
+    .mode-menu .mode-menu__arrowIcon{
+        display: inline-block;
+        width: 9px;
+        height: 6px;
+    }
+
+    .mode-menu__countryFlag{
+        display: inline-block;
+        width: 22px;
+        height: 15px;
+        background-image: url('https://sudoku.com/build/images/sprite.8f6a561f.svg');
+        background-position: 55% 87%;
     }
 
     header{
@@ -892,8 +928,9 @@ footer{
     }
 
     .navigation{
-        padding: 0 14.5%;
+        padding: 0 4.5%;
     }
+
     .game__content{
         width: 426px;
         height: 426px;
@@ -949,6 +986,10 @@ footer{
 }
 
 @media (min-width: 1400px) {
+    .navigation{
+        padding: 0 14.5%;
+    }
+
     main{
         right: -10%;
     }
