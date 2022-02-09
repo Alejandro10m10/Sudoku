@@ -1,6 +1,7 @@
 let timerElement = document.querySelector('#gameTime'),
-    pauseGame = document.querySelector('#btnPauseGame')
-    playGame = document.querySelector('#btnPlayGame');
+    pauseGame = document.querySelector('#btnPauseGame'),
+    playGame = document.querySelector('#btnPlayGame'),
+    newGame = document.querySelector('#btnNewGame');
 
 pauseGame.addEventListener('click', pauseTimer);
 playGame.addEventListener('click', playTimer);
