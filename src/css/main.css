@@ -100,6 +100,10 @@ header{
     white-space: nowrap;
 }
 
+.navigation__list__desktop{
+    display: none;
+}
+
 /* Main */
 main{
     width: 100%;
@@ -773,5 +777,67 @@ footer{
         background-color: var(--strongBlue);
         border-radius: 5px;
         color: var(--white);
+    }
+
+    .navigation__list:last-child{
+        place-content: center;
+    }
+
+    .navigation__list__desktop{
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+        place-content: center;
+        gap: 0 60px;
+        height: 42px;
+    }
+
+    .navigation{
+        grid-template-columns: 20px 2fr auto;
+    }
+
+    .navigation__list__desktop__anchor{
+        display: grid;
+        place-content: center;
+        font-size: 1.6rem;
+        color: rgb(110, 124, 140);
+        font-weight: bold;
+    }
+
+    .navigation__list__desktop--tips{
+        margin-top: 12px;
+        width: fit-content;
+        height: 20px;
+        border-bottom: 3px solid transparent;
+    }
+
+    .navigation__list__desktop--tips:hover{
+        border-bottom: 3px solid var(--strongBlue);
+    }
+
+    .navigation__list__desktop__anchor--trophy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+    }
+
+    .navigation__list__desktop__anchor--trophy:hover{
+        background-color: var(--strongGray);
+        border-radius: 5px;
+    }
+
+    .navigation__list__desktop__anchor--trophy p{
+        white-space: nowrap;
+    }
+
+    .navigation__list__desktop__anchor__trophyIcon{
+        width: 25px;
+        height: 25px;
+        margin-right: 12px;
+    }
+
+    .navigation__list__desktop__anchor--fbIcon{
+        width: 34px;
+        height: 34px;
     }
 }
