@@ -471,10 +471,9 @@ input:checked + .slider .toggleSwitch__icon:before{
 }
 
 .game__controlls__numbers{
-    width: 100%;
-    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    place-content: start;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .btnNumbers{
@@ -673,22 +672,17 @@ footer{
 
     .game__container{
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 0 20px;
     }
-
-    .game__content{
-        width: 345px;
-        height: 345px;
-        place-self: center;
-    }
-
+    
     .game__controlls{
-        margin-top: 0;
+        margin-top: 15px;
     }
 
     .game__controlls__numbers{
-        grid-template-columns: repeat(3, 96px);
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
         gap: 5px;
     }
 
@@ -699,17 +693,25 @@ footer{
     .btnNumbers{
         background-color: #eaeef4;
         color: var(--strongBlue);
-        height: 82px;
+        min-height: 102px;
         font-size: 3.5rem;
         font-weight: lighter;
     }
 
-    .number{
-        font-size: 2rem;
+    .game__information{
+        margin-top: 40px;
     }
 
-    .game__information{
-        margin-top: 10px;
+    .advert{
+        grid-template-columns: 79px 1fr 1fr 70px;
+        grid-template-rows: 1fr;
+    }
+
+    .advert__appDownloads{
+        display: grid;
+        grid-column: 3 / 5;
+        grid-template-columns: repeat(2, 1fr);
+        place-content: center;
     }
     
 }
