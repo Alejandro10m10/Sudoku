@@ -170,8 +170,14 @@ main{
     background-position: 62.3893% 94.9748%;
 }
 
-.game .game__settings .game__settings__timer .no-display{
+.game .game__settings .game__settings__timer .no-display,
+.mode-menus .no-display,
+.language-menu .no-display{
     display: none;
+}
+
+.rotate{
+    transform: rotate(180deg);
 }
 
 .game__settings .game-difficult__label{
@@ -893,7 +899,8 @@ footer{
         fill: #6e7c8c!important ;
     }
 
-    .mode-menu .mode-menu__arrowIcon{
+    .mode-menu .mode-menu__arrowIcon,
+    .language-menu .language-menu__arrowIcon{
         display: inline-block;
         width: 9px;
         height: 6px;
