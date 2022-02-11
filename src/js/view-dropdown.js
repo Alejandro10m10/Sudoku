@@ -23,13 +23,3 @@ function showDropdownList(firstElement, firstArrow, secondElement, secondArrow){
     }
 }
 
-/* 1. Se agrega un listener para el evento click de toda la ventana*/
-/*2. Si el div con id clickbox contiene a e. target*/
-
-/*
-window.addEventListener('click', function(e) {
-    if (document.querySelector('.mode-menu-dropdown').contains(e.target)) {
-        showDropdownList(menuDropdownElement, arrowGameMode, languageDropdownElement, arrowLanguage);
-    } else {
-    }
-  }) */
