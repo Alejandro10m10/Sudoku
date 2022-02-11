@@ -8,16 +8,28 @@ let btnGameMode = document.querySelector('#mode-game-dropdown'),
 const classNameNoDisplay = 'no-display',
       classRotateElement = 'rotate';
 
-btnLanguage.addEventListener('click', () => showDropdownList(languageDropdownElement, arrowLanguage));
-btnGameMode.addEventListener('click', () => showDropdownList(menuDropdownElement, arrowGameMode));
+btnLanguage.addEventListener('click', () => showDropdownList(languageDropdownElement, arrowLanguage, menuDropdownElement, arrowGameMode));
+btnGameMode.addEventListener('click', () => showDropdownList(menuDropdownElement, arrowGameMode, languageDropdownElement, arrowLanguage));
 
-function showDropdownList(element, arrow){
-    if(element.classList.contains(classNameNoDisplay)){
-        element.classList.remove(classNameNoDisplay);
-        arrow.classList.add(classRotateElement);
+function showDropdownList(firstElement, firstArrow, secondElement, secondArrow){
+    if(firstElement.classList.contains(classNameNoDisplay)){
+        firstElement.classList.remove(classNameNoDisplay);
+        secondElement.classList.add(classNameNoDisplay);
+        firstArrow.classList.add(classRotateElement);
+        secondArrow.classList.remove(classRotateElement);
     } else{
-        element.classList.add(classNameNoDisplay);
-        arrow.classList.remove(classRotateElement);
+        firstElement.classList.add(classNameNoDisplay);
+        firstArrow.classList.remove(classRotateElement);
     }
-
 }
+
+/* 1. Se agrega un listener para el evento click de toda la ventana*/
+/*2. Si el div con id clickbox contiene a e. target*/
+
+/*
+window.addEventListener('click', function(e) {
+    if (document.querySelector('.mode-menu-dropdown').contains(e.target)) {
+        showDropdownList(menuDropdownElement, arrowGameMode, languageDropdownElement, arrowLanguage);
+    } else {
+    }
+  }) */
