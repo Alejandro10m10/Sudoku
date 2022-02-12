@@ -44,6 +44,8 @@ function addSelectMiniBox(box, boxArray, className){
 
 function getRowMiniBoxesInvolved(miniBox){
 
+	removeSelectBoxInvolved();
+
 	let box = miniBox.parentElement,
 		boxes = box.children,
 		positionMiniBox;
@@ -71,8 +73,6 @@ function getRowMiniBoxesInvolved(miniBox){
 		}
 	}
 
-	console.log(positionMiniBox);
-
     if(positionMiniBox > 5 ){
         startColumnBox = positionMiniBox - 3;
         finishColumnBox = positionMiniBox - 6;
@@ -83,8 +83,6 @@ function getRowMiniBoxesInvolved(miniBox){
         startColumnBox = positionMiniBox + 3;
         finishColumnBox = positionMiniBox + 6;
     }
-
-	console.log(startColumnBox + " " +  finishColumnBox);
 
 	for(let i = 0 ; i < arrayBoxColumnInvolved.length ; i++){
 		let boxInvolvedChildren = arrayBoxColumnInvolved[i].children;
@@ -99,7 +97,19 @@ function addSelectBoxInvolved(element, className){
 	element.classList.add(className);
 }
 
+function removeSelectBoxInvolved(){
+	let allRowsSelected = document.querySelectorAll('.row-selected');
+	let allColumnsSelected = document.querySelectorAll('.column-selected');
 
+	for(let i = 0 ; i < allRowsSelected.length ; i++){
+		allRowsSelected[i].classList.remove('row-selected');
+	}
+
+	for(let i = 0 ; i < allColumnsSelected.length ; i++){
+		allColumnsSelected[i].classList.remove('column-selected');
+	}
+
+}	
 
 function getRowBoxesInvolved(boxSelected){
     let gameBoardContent = document.querySelector('.game__content').children,
