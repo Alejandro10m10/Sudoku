@@ -4,6 +4,7 @@ init();
 
 function init(){
 	setButtonsEvent();
+	addEventBoxListener(boxes);
     addEventsToBoxes(boxes, miniBoxes, addEventMiniBoxListener);
 	fillBoard(board);
 }
@@ -31,32 +32,45 @@ function addEventMiniBoxListener(miniBoxes){
 function addSelectBox(box, boxArray, className, KindOfBoxSelected){
 	removeSelectBox(box, className);
 	boxArray.classList.add(className);
-    let boxSelected = boxArray;
-
-    arrayBoxRowInvolved = getRowBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
-	arrayBoxColumnInvolved = getColumnsBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
-
 }
 
 function addSelectMiniBox(box, boxArray, className){
 	let miniBoxSelected = boxArray;
 	removeSelectBox(box, className);
 	boxArray.classList.add(className);
-	console.log(boxArray.parentElement);
 
 	getRowMiniBoxesInvolved(boxArray);
 }
 
 function getRowMiniBoxesInvolved(miniBox){
 
-	let box = miniBox.parentElement.children,
+	let box = miniBox.parentElement,
+		boxes = box.children,
 		positionMiniBox;
 
-	for(let i = 0; i < box.length ; i++){
-        if(box[i] === miniBox){
+	let startRowBox,
+        finishRowBox;
+	
+
+	for(let i = 0; i < boxes.length ; i++){
+        if(boxes[i] === miniBox){
             positionMiniBox = i;
         }
     }
+
+	arrayBoxRowInvolved = getRowBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
+	arrayBoxColumnInvolved = getColumnsBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
+	
+	startRowBox = (positionMiniBox - positionMiniBox % 3);
+    finishRowBox = startRowBox + 2;
+
+	for(let i = 0 ; i < arrayBoxRowInvolved.length ; i++){
+		boxInvolvedChildren = arrayBoxRowInvolved[i].children;
+		for(let j = startRowBox; j <= finishRowBox ; j++){
+			console.log(boxInvolvedChildren[j]);
+		}
+	}
+	
 }
 
 function getRowBoxesInvolved(boxSelected){
