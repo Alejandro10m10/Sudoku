@@ -67,7 +67,7 @@ function getRowMiniBoxesInvolved(miniBox){
 	for(let i = 0 ; i < arrayBoxRowInvolved.length ; i++){
 		let boxInvolvedChildren = arrayBoxRowInvolved[i].children;
 		for(let j = startRowBox; j <= finishRowBox ; j++){
-			//console.log(boxInvolvedChildren[j]);
+			addSelectBoxInvolved(boxInvolvedChildren[j], 'row-selected');
 		}
 	}
 
@@ -89,11 +89,17 @@ function getRowMiniBoxesInvolved(miniBox){
 	for(let i = 0 ; i < arrayBoxColumnInvolved.length ; i++){
 		let boxInvolvedChildren = arrayBoxColumnInvolved[i].children;
 
-		console.log(boxInvolvedChildren[startColumnBox]);
-		console.log(boxInvolvedChildren[positionMiniBox]);
-		console.log(boxInvolvedChildren[finishColumnBox]);		
+		addSelectBoxInvolved(boxInvolvedChildren[startColumnBox], 'column-selected');
+		addSelectBoxInvolved(boxInvolvedChildren[positionMiniBox], 'column-selected');
+		addSelectBoxInvolved(boxInvolvedChildren[finishColumnBox], 'column-selected');	
 	}
 }
+
+function addSelectBoxInvolved(element, className){
+	element.classList.add(className);
+}
+
+
 
 function getRowBoxesInvolved(boxSelected){
     let gameBoardContent = document.querySelector('.game__content').children,
