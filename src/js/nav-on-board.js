@@ -58,19 +58,41 @@ function getRowMiniBoxesInvolved(miniBox){
         }
     }
 
-	arrayBoxRowInvolved = getRowBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
-	arrayBoxColumnInvolved = getColumnsBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
+	let arrayBoxRowInvolved = getRowBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
+	let arrayBoxColumnInvolved = getColumnsBoxesInvolved(box); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
 	
 	startRowBox = (positionMiniBox - positionMiniBox % 3);
     finishRowBox = startRowBox + 2;
 
 	for(let i = 0 ; i < arrayBoxRowInvolved.length ; i++){
-		boxInvolvedChildren = arrayBoxRowInvolved[i].children;
+		let boxInvolvedChildren = arrayBoxRowInvolved[i].children;
 		for(let j = startRowBox; j <= finishRowBox ; j++){
-			console.log(boxInvolvedChildren[j]);
+			//console.log(boxInvolvedChildren[j]);
 		}
 	}
-	
+
+	console.log(positionMiniBox);
+
+    if(positionMiniBox > 5 ){
+        startColumnBox = positionMiniBox - 3;
+        finishColumnBox = positionMiniBox - 6;
+    } else if(positionMiniBox > 2){
+        startColumnBox = positionMiniBox + 3;
+        finishColumnBox = positionMiniBox - 3;
+    } else{
+        startColumnBox = positionMiniBox + 3;
+        finishColumnBox = positionMiniBox + 6;
+    }
+
+	console.log(startColumnBox + " " +  finishColumnBox);
+
+	for(let i = 0 ; i < arrayBoxColumnInvolved.length ; i++){
+		let boxInvolvedChildren = arrayBoxColumnInvolved[i].children;
+
+		console.log(boxInvolvedChildren[startColumnBox]);
+		console.log(boxInvolvedChildren[positionMiniBox]);
+		console.log(boxInvolvedChildren[finishColumnBox]);		
+	}
 }
 
 function getRowBoxesInvolved(boxSelected){
