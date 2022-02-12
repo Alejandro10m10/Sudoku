@@ -1,9 +1,9 @@
+let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
 /* Init the game */
 init();
 
 function init(){
 	setButtonsEvent();
-
     addEventsToBoxes(boxes, miniBoxes, addEventMiniBoxListener);
 	fillBoard(board);
 }
@@ -17,40 +17,46 @@ function addEventsToBoxes(boxes, miniBoxes, myCallback){
 function addEventBoxListener(boxes){
 	for(let i = 0; i < boxes.length ; i++){
 		let box = boxes[i];
-		box.addEventListener('click', () => addSelectBox(boxes, box, 'box-selected', true) );
+		box.addEventListener('click', () => addSelectBox(boxes, box, 'box-selected') );
 	}
 }
 
 function addEventMiniBoxListener(miniBoxes){
 	for(let i = 0; i < miniBoxes.length ; i++){
 		let miniBox = miniBoxes[i];
-		miniBox.addEventListener('click', () => addSelectBox(miniBoxes, miniBox, 'box-inside-selected', false) );
+		miniBox.addEventListener('click', () => addSelectMiniBox(miniBoxes, miniBox, 'box-inside-selected') );
 	}
 }
 
 function addSelectBox(box, boxArray, className, KindOfBoxSelected){
 	removeSelectBox(box, className);
 	boxArray.classList.add(className);
-    let boxSelected,
-        miniBoxSelected;
+    let boxSelected = boxArray;
 
-    let arrayBoxRowInvolved = [],
-        arrayBoxColumnInvolved = [];
+    arrayBoxRowInvolved = getRowBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
+	arrayBoxColumnInvolved = getColumnsBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
 
-    if(KindOfBoxSelected){ // Si se selecciono una caja completa 9x9 obtenemos la caja que se ha seleccionado
-        boxSelected = boxArray;
-        arrayBoxRowInvolved = getRowBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las filas de las miniBoxes
-        arrayBoxColumnInvolved = getColumnsBoxesInvolved(boxSelected); //Cuando presionamos sobre un elemento cambiamos el color de las columnas de las miniBoxes
-        console.log(arrayBoxRowInvolved);
-        console.log(arrayBoxColumnInvolved);
-    } else{  // Si se selecciono una mini caja 1x1 obtenemos la minicaja que se ha seleccionado
-        miniBoxSelected  = boxArray;
-    }
 }
 
-function getRowMiniBoxesInvolved(miniBoxSelected, boxSelected){
-    console.log(miniBoxSelected);
-    console.log(boxSelected);
+function addSelectMiniBox(box, boxArray, className){
+	let miniBoxSelected = boxArray;
+	removeSelectBox(box, className);
+	boxArray.classList.add(className);
+	console.log(boxArray.parentElement);
+
+	getRowMiniBoxesInvolved(boxArray);
+}
+
+function getRowMiniBoxesInvolved(miniBox){
+
+	let box = miniBox.parentElement.children,
+		positionMiniBox;
+
+	for(let i = 0; i < box.length ; i++){
+        if(box[i] === miniBox){
+            positionMiniBox = i;
+        }
+    }
 }
 
 function getRowBoxesInvolved(boxSelected){
