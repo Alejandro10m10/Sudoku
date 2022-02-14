@@ -216,12 +216,48 @@ function setButtonsEvent(){
 function putNumberInBoard(number){
 	let boxSelected = document.querySelector('.box-inside-selected');
 	let boxParagraphNumber = boxSelected.childNodes[0];
+	let numberBefore = boxParagraphNumber.textContent;
+
 	boxParagraphNumber.innerHTML = number;
 
-	console.log(getBoard());
+	if(!isThereAlreadyANumberInBox(board, getActualBoard())){
+		boxParagraphNumber.innerHTML = numberBefore;
+	} 
+
 }
 
-function getBoard(){
+function isThereAlreadyANumberInBox(originalBoard, userBoard){
+	let positionNumers = getPositionInitialNumbers(originalBoard);
+
+	for(let i = 0; i < positionNumers.length ; i++){
+		let row = positionNumers[i][0];
+		let column = positionNumers[i][1];
+
+		let numberBefore = originalBoard[row][column];
+		let numberAfter = userBoard[row][column];
+
+		if(numberBefore !== numberAfter) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function getPositionInitialNumbers(originalBoard){
+	let positionNumers = [];
+	for(let row = 0; row < BOARD_SIZE; row++){
+		for(let column = 0; column < BOARD_SIZE ; column++){
+			let number = originalBoard[row][column];
+			if(number !== 0){
+				positionNumers.push([row, column]);
+			}
+		}
+	}
+	return positionNumers;
+}
+
+function getActualBoard(){
 	let boxes = document.querySelectorAll('.game__box');
 
 	let inicio = 0;
