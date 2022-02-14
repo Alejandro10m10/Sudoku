@@ -16,6 +16,8 @@ let board = [
 	[0,0,7,0,4,0,2,0,3],
 ];
 
+let userBoard = board.slice();
+
 /* Solve the sudoku board */
 
 function isNumberInRow(board, row, number){

@@ -195,9 +195,6 @@ function getColumnsBoxesInvolved(boxSelected){
     return arrayBoxColumnInvolved;
 }
 
-function addColorRowSelectBox(){
-}
-
 function removeSelectBox(boxArray, className){
 	for(let i = 0; i < boxArray.length ; i++){
 		let box = boxArray[i];
@@ -220,8 +217,76 @@ function putNumberInBoard(number){
 	let boxSelected = document.querySelector('.box-inside-selected');
 	let boxParagraphNumber = boxSelected.childNodes[0];
 	boxParagraphNumber.innerHTML = number;
+
+	console.log(getBoard());
 }
 
+function getBoard(){
+	let boxes = document.querySelectorAll('.game__box');
+
+	let inicio = 0;
+	let final = 3;
+
+	let m = 0;
+	let k = 0;
+
+	let array = [];
+	let rowArray = [];
+
+	for(let i = 0; i < 27 ; i++){
+		let miniBoxes = boxes[m].children;
+
+		for(let j = inicio; j < final ; j++){ //Entramos a los primeros 3 elementos de la caja
+			let number = parseInt(miniBoxes[j].children[0].textContent);
+			if(isNaN(number)){ number = 0}
+			rowArray.push(number);		
+		}
+
+		k++;
+		m++;
+
+		if(k%3 == 0){
+			array.push(rowArray);
+			rowArray=[];
+		}
+
+		if(k == 3){
+			m=0;
+			inicio += 3;
+			final += 3;
+		} else if(k == 6){
+			m=0;
+			inicio += 3;
+			final += 3;
+		} else if(k == 9){
+			m=3;
+			inicio = 0;
+			final = 3;
+		} else if(k == 12){
+			m=3;
+			inicio += 3;
+			final += 3;
+		} else if(k == 15){
+			m=3;
+			inicio += 3;
+			final += 3;
+		} else if(k == 18){
+			m=6;
+			inicio = 0;
+			final = 3;
+		} else if(k == 21){
+			m=6;
+			inicio += 3;
+			final += 3;
+		} else if(k == 24){
+			m=6;
+			inicio += 3;
+			final += 3;
+		}
+	}
+
+	return array;
+}
 
 /* Fill the board */ 
 function fillBoard(board){
