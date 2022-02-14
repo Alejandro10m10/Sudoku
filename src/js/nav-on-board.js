@@ -35,11 +35,37 @@ function addSelectBox(box, boxArray, className, KindOfBoxSelected){
 }
 
 function addSelectMiniBox(box, boxArray, className){
-	let miniBoxSelected = boxArray;
+	let allMiniBoxex = box,
+		numberInMiniBox,
+		paragraphElement = boxArray.children[0];
+
 	removeSelectBox(box, className);
 	boxArray.classList.add(className);
+	
+	numberInMiniBox = parseInt(paragraphElement.textContent);
 
 	getRowMiniBoxesInvolved(boxArray);
+	getAllSameNumbersSelected(numberInMiniBox, allMiniBoxex, boxArray);
+}
+
+function getAllSameNumbersSelected(numberInMiniBox, allMiniBoxex, boxSelected){
+	if(!isNaN(numberInMiniBox)){
+		for(let i = 0; i < allMiniBoxex.length; i++){
+			numbersInMiniBoxes = parseInt(allMiniBoxex[i].children[0].textContent);
+			allMiniBoxex[i].classList.remove('sameNumberSelected');
+			
+			if(!isNaN(numbersInMiniBoxes) && boxSelected != allMiniBoxex[i]){
+				if(numberInMiniBox == numbersInMiniBoxes){
+					allMiniBoxex[i].classList.add('sameNumberSelected');
+				}
+			}
+		}
+	} else{
+		for(let i = 0; i < allMiniBoxex.length; i++){
+			numbersInMiniBoxes = parseInt(allMiniBoxex[i].children[0].textContent);
+			allMiniBoxex[i].classList.remove('sameNumberSelected');
+		}
+	}
 }
 
 function getRowMiniBoxesInvolved(miniBox){

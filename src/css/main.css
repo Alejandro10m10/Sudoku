@@ -509,6 +509,10 @@ input:checked + .slider .toggleSwitch__icon:before{
     background-color: var(--strongGray);
 }
 
+.sameNumberSelected{
+    background-color: #c3d7ea;
+}
+
 /* Advert */
 .advert{
     width: 95%;
