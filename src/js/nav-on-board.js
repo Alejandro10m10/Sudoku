@@ -224,6 +224,8 @@ function putNumberInBoard(number){
 		boxParagraphNumber.innerHTML = numberBefore;
 	} else{
 		boxParagraphNumber.classList.add('selectedNumber');
+		let allMiniBoxex = document.querySelectorAll('.game__box__inside');
+		getAllSameNumbersSelected(number, allMiniBoxex, boxSelected);
 	}
 
 	
