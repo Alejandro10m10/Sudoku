@@ -222,8 +222,11 @@ function putNumberInBoard(number){
 
 	if(!isThereAlreadyANumberInBox(board, getActualBoard())){
 		boxParagraphNumber.innerHTML = numberBefore;
-	} 
+	} else{
+		boxParagraphNumber.classList.add('selectedNumber');
+	}
 
+	
 }
 
 function isThereAlreadyANumberInBox(originalBoard, userBoard){

@@ -588,6 +588,10 @@ input:checked + .slider .toggleSwitch__icon:before{
     background: url('https://sudoku.com/build/images/badges.209fdf8d.svg') no-repeat;
 }
 
+.selectedNumber{
+    color: var(--strongBlue);
+}
+
 /* Aside */
 aside{
     display: none;
