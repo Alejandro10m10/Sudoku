@@ -236,9 +236,8 @@ function putNumberInBoard(number){
 		boxParagraphNumber.classList.add('selectedNumber');
 		let allMiniBoxex = document.querySelectorAll('.game__box__inside');
 		getAllSameNumbersSelected(number, allMiniBoxex, boxSelected);
+		arrayMovements.push([boxSelected.parentElement, boxSelected, boxParagraphNumber, number]);
 	}
-
-	arrayMovements.push([boxSelected.parentElement, boxSelected, boxParagraphNumber, number]);
 	
 }
 
@@ -399,10 +398,6 @@ function putNumberInBox(array, start, finish){
 function undoMovement(arrayMovements){
 	let arryMovementsLength = arrayMovements.length;
 
-	if(arryMovementsLength !== 1){ 
-		arryMovementsLength = arrayMovements.length;	
-	} 
-
 	let lastMiniBox,
 		lastItem = arryMovementsLength -1,
 		lastBox,
@@ -414,23 +409,25 @@ function undoMovement(arrayMovements){
 		lastMiniBox = arrayMovements[lastItem][1];
 		lastParagraph = arrayMovements[lastItem][2];
 		lastNumber = arrayMovements[lastItem][3];
+
+		let miniBox = document.querySelector('.box-inside-selected');
+		miniBox.classList.remove('box-inside-selected');
+		removeSelectBox(boxes, 'box-selected');
+		removeSelectBoxInvolved();
+
+		lastBox.classList.add('box-selected');
+		lastMiniBox.classList.add('box-inside-selected');
+		getRowMiniBoxesInvolved(lastMiniBox);
+
+		let allSameNumbers = document.querySelectorAll('.sameNumberSelected');
+		for(let allSameNumber of allSameNumbers){
+			allSameNumber.classList.remove('sameNumberSelected');
+		}
+
+		lastParagraph.innerHTML = "";
 	}
 
-	let miniBox = document.querySelector('.box-inside-selected');
-	miniBox.classList.remove('box-inside-selected');
-	removeSelectBox(boxes, 'box-selected');
-	removeSelectBoxInvolved();
-
-	lastBox.classList.add('box-selected');
-	lastMiniBox.classList.add('box-inside-selected');
-	getRowMiniBoxesInvolved(lastMiniBox);
-
-	let allSameNumbers = document.querySelectorAll('.sameNumberSelected');
-	for(let allSameNumber of allSameNumbers){
-		allSameNumber.classList.remove('sameNumberSelected');
-	}
-
-	lastParagraph.innerHTML = "";
+	
 
 	if(arryMovementsLength !== 1){ 
 		arrayMovements.pop();		
