@@ -1,4 +1,14 @@
 let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
+let btnUndoMovement = document.querySelector('#btnUndoMovement');
+
+// Variables to control the last movement on the board
+
+let arrayMovements = [];
+
+btnUndoMovement.addEventListener('click', () => undoMovement(arrayMovements));
+
+
+
 /* Init the game */
 init();
 
@@ -29,7 +39,7 @@ function addEventMiniBoxListener(miniBoxes){
 	}
 }
 
-function addSelectBox(box, boxArray, className, KindOfBoxSelected){
+function addSelectBox(box, boxArray, className){
 	removeSelectBox(box, className);
 	boxArray.classList.add(className);
 }
@@ -228,6 +238,7 @@ function putNumberInBoard(number){
 		getAllSameNumbersSelected(number, allMiniBoxex, boxSelected);
 	}
 
+	arrayMovements.push([boxSelected.parentElement, boxSelected, boxParagraphNumber, number]);
 	
 }
 
@@ -382,4 +393,46 @@ function putNumberInBox(array, start, finish){
 		}
 	}
 
+}
+
+/* Buttons controll the game */
+function undoMovement(arrayMovements){
+	let arryMovementsLength = arrayMovements.length;
+
+	if(arryMovementsLength !== 1){ 
+		arryMovementsLength = arrayMovements.length;	
+	} 
+
+	let lastMiniBox,
+		lastItem = arryMovementsLength -1,
+		lastBox,
+		lastParagraph,
+		lastNumber;
+	
+	if(arryMovementsLength !== 0){
+		lastBox = arrayMovements[lastItem][0];
+		lastMiniBox = arrayMovements[lastItem][1];
+		lastParagraph = arrayMovements[lastItem][2];
+		lastNumber = arrayMovements[lastItem][3];
+	}
+
+	let miniBox = document.querySelector('.box-inside-selected');
+	miniBox.classList.remove('box-inside-selected');
+	removeSelectBox(boxes, 'box-selected');
+	removeSelectBoxInvolved();
+
+	lastBox.classList.add('box-selected');
+	lastMiniBox.classList.add('box-inside-selected');
+	getRowMiniBoxesInvolved(lastMiniBox);
+
+	let allSameNumbers = document.querySelectorAll('.sameNumberSelected');
+	for(let allSameNumber of allSameNumbers){
+		allSameNumber.classList.remove('sameNumberSelected');
+	}
+
+	lastParagraph.innerHTML = "";
+
+	if(arryMovementsLength !== 1){ 
+		arrayMovements.pop();		
+	}
 }
