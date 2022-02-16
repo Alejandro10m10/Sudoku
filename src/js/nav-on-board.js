@@ -232,7 +232,7 @@ function putNumberInBoard(number){
 
 	boxParagraphNumber.innerHTML = number;
 
-	if(!isThereAlreadyANumberInBox(board, getActualBoard())){
+	if(!isThereAlreadyANumberInBox(board, getActualBoard(0))){
 		boxParagraphNumber.innerHTML = numberBefore;
 	} else{
 		boxParagraphNumber.classList.add('selectedNumber');
@@ -274,7 +274,7 @@ function getPositionInitialNumbers(originalBoard){
 	return positionNumers;
 }
 
-function getActualBoard(){
+function getActualBoard(value){ // 0 - Numbers   1 - Divs
 	let boxes = document.querySelectorAll('.game__box');
 
 	let inicio = 0;
@@ -291,8 +291,12 @@ function getActualBoard(){
 
 		for(let j = inicio; j < final ; j++){ //Entramos a los primeros 3 elementos de la caja
 			let number = parseInt(miniBoxes[j].children[0].textContent);
+			let element;
 			if(isNaN(number)){ number = 0}
-			rowArray.push(number);		
+			(value === 0) 
+				? element = number
+				: element = miniBoxes[j];
+			rowArray.push(element);		
 		}
 
 		k++;
@@ -439,8 +443,46 @@ function removeColorInAllSameNumbers(){
 }
 
 function eraseMovement(){
-	let miniBoxNumberSelected = document.querySelector('.box-inside-selected').children[0];
-	miniBoxNumberSelected.innerHTML = "";
+	let miniBoxNumberSelected = document.querySelector('.box-inside-selected')
 
-	removeColorInAllSameNumbers();
+
+	let actualBoard = getActualBoard(1);
+	let positionMiniBoxNumber = getMiniBoxPositionInBoard(actualBoard, miniBoxNumberSelected);
+	let positionNumers = getPositionInitialNumbers(board);
+	
+	if(!canErase(positionNumers, positionMiniBoxNumber)){
+		let paragraphNumberSelected = miniBoxNumberSelected.children[0];
+		paragraphNumberSelected.innerHTML = "";
+		removeColorInAllSameNumbers();	
+	}
+}
+
+function getMiniBoxPositionInBoard(actualBoard, miniBox){
+	let miniBoxPosition = [];
+	for(let row = 0; row < BOARD_SIZE ; row++){
+		for(column = 0; column < BOARD_SIZE ; column++){
+			if(actualBoard[row][column] === miniBox){
+				miniBoxPosition.push([row, column]);
+			}
+		}
+	}
+	return miniBoxPosition;
+}
+
+function canErase(positionNumers, positionMiniBoxNumber){
+	let compareNumber = positionMiniBoxNumber[0];
+	let rowNumberSelected =  compareNumber[0];
+	let columnNumberSelected = compareNumber[1];
+
+	for(let i = 0; i < positionNumers.length ; i++){
+		let number = positionNumers[i];
+
+		if(number.length != compareNumber.length) return false;
+
+		let row = number[0];
+		let column = number[1];
+
+		if(rowNumberSelected === row && columnNumberSelected === column) return true;
+	} 
+	return false;
 }
