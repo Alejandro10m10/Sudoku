@@ -227,6 +227,7 @@ function setButtonsEvent(){
 }
 
 function putNumberInBoard(number){
+	let actualBoard = getActualBoard(0);
 	let boxSelected = document.querySelector('.box-inside-selected');
 	let boxParagraphNumber = boxSelected.childNodes[0];
 	let numberBefore = boxParagraphNumber.textContent;
@@ -240,6 +241,13 @@ function putNumberInBoard(number){
 		let allMiniBoxex = document.querySelectorAll('.game__box__inside');
 		getAllSameNumbersSelected(number, allMiniBoxex, boxSelected);
 		arrayMovements.push([boxSelected.parentElement, boxSelected, boxParagraphNumber, number]);
+
+		if(isValidMovement(actualBoard, boxSelected, number)){
+			boxParagraphNumber.classList.remove('wrongMovement');
+		} else{
+			boxParagraphNumber.classList.add('wrongMovement');
+		}
+		
 	}
 	
 }
@@ -491,7 +499,12 @@ function canErase(positionNumers, positionMiniBoxNumber){
 
 function checkMistakes(){
 	checkMistakesSelected = (!checkMistakesSelected);	
+}
 
-
-
+function isValidMovement(actualBoard, boxSelected, posibleNumber){
+	let positionMovement = getMiniBoxPositionInBoard(getActualBoard(1), boxSelected)[0];
+	let rowMovement = positionMovement[0];
+	let columnMovement = positionMovement[1];
+	
+	return isValidNumberPlacement(actualBoard, rowMovement, columnMovement, posibleNumber);	
 }
