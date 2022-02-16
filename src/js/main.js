@@ -16,10 +16,9 @@ let board = [
 	[0,0,7,0,4,0,2,0,3],
 ];
 
-let userBoard = board.slice();
+let finalBoard = JSON.parse(JSON.stringify(board));
 
 /* Solve the sudoku board */
-
 function isNumberInRow(board, row, number){
 	for(let i = 0; i < BOARD_SIZE ; i++){
 		if( board[row][i] === number){
@@ -80,6 +79,4 @@ function solveBoard(board){
 	return true;
 }
 
-
-//solveBoard(board);
-//console.log(board);
+solveBoard(finalBoard);

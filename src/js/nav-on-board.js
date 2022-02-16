@@ -1,14 +1,15 @@
 let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
 let btnUndoMovement = document.querySelector('#btnUndoMovement'),
-	btnEraseMovement = document.querySelector('#btnEraseMovement');
+	btnEraseMovement = document.querySelector('#btnEraseMovement'),
+	btnCheckBox = document.querySelector('#checkMistakes');
+let checkMistakesSelected = true; // Variable que nos permite conocer si el usuario activo o no activo la casilla
 
 // Variables to control the last movement on the board
-
 let arrayMovements = [];
 
 btnUndoMovement.addEventListener('click', () => undoMovement(arrayMovements));
 btnEraseMovement.addEventListener('click', eraseMovement);
-
+btnCheckBox.addEventListener('click', checkMistakes);
 
 
 /* Init the game */
@@ -453,6 +454,7 @@ function eraseMovement(){
 	if(!canErase(positionNumers, positionMiniBoxNumber)){
 		let paragraphNumberSelected = miniBoxNumberSelected.children[0];
 		paragraphNumberSelected.innerHTML = "";
+		arrayMovements.pop();
 		removeColorInAllSameNumbers();	
 	}
 }
@@ -485,4 +487,11 @@ function canErase(positionNumers, positionMiniBoxNumber){
 		if(rowNumberSelected === row && columnNumberSelected === column) return true;
 	} 
 	return false;
+}
+
+function checkMistakes(){
+	checkMistakesSelected = (!checkMistakesSelected);	
+
+
+
 }
