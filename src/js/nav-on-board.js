@@ -1,11 +1,13 @@
 let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
-let btnUndoMovement = document.querySelector('#btnUndoMovement');
+let btnUndoMovement = document.querySelector('#btnUndoMovement'),
+	btnEraseMovement = document.querySelector('#btnEraseMovement');
 
 // Variables to control the last movement on the board
 
 let arrayMovements = [];
 
 btnUndoMovement.addEventListener('click', () => undoMovement(arrayMovements));
+btnEraseMovement.addEventListener('click', eraseMovement);
 
 
 
@@ -419,17 +421,26 @@ function undoMovement(arrayMovements){
 		lastMiniBox.classList.add('box-inside-selected');
 		getRowMiniBoxesInvolved(lastMiniBox);
 
-		let allSameNumbers = document.querySelectorAll('.sameNumberSelected');
-		for(let allSameNumber of allSameNumbers){
-			allSameNumber.classList.remove('sameNumberSelected');
-		}
+		removeColorInAllSameNumbers();
 
 		lastParagraph.innerHTML = "";
 	}
 
-	
-
 	if(arryMovementsLength !== 1){ 
 		arrayMovements.pop();		
 	}
+}
+
+function removeColorInAllSameNumbers(){
+	let allSameNumbers = document.querySelectorAll('.sameNumberSelected');
+	for(let allSameNumber of allSameNumbers){
+		allSameNumber.classList.remove('sameNumberSelected');
+	}
+}
+
+function eraseMovement(){
+	let miniBoxNumberSelected = document.querySelector('.box-inside-selected').children[0];
+	miniBoxNumberSelected.innerHTML = "";
+
+	removeColorInAllSameNumbers();
 }
