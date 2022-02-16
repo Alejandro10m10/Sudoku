@@ -230,7 +230,12 @@ function putNumberInBoard(number){
 	let actualBoard = getActualBoard(0);
 	let boxSelected = document.querySelector('.box-inside-selected');
 	let boxParagraphNumber = boxSelected.childNodes[0];
-	let numberBefore = boxParagraphNumber.textContent;
+	let numberBefore = parseInt(boxParagraphNumber.textContent);
+
+	if(numberBefore === number){
+		eraseMovement();
+		return;
+	}
 
 	boxParagraphNumber.innerHTML = number;
 
@@ -453,8 +458,6 @@ function removeColorInAllSameNumbers(){
 
 function eraseMovement(){
 	let miniBoxNumberSelected = document.querySelector('.box-inside-selected')
-
-
 	let actualBoard = getActualBoard(1);
 	let positionMiniBoxNumber = getMiniBoxPositionInBoard(actualBoard, miniBoxNumberSelected);
 	let positionNumers = getPositionInitialNumbers(board);
@@ -505,6 +508,6 @@ function isValidMovement(actualBoard, boxSelected, posibleNumber){
 	let positionMovement = getMiniBoxPositionInBoard(getActualBoard(1), boxSelected)[0];
 	let rowMovement = positionMovement[0];
 	let columnMovement = positionMovement[1];
-	
+
 	return isValidNumberPlacement(actualBoard, rowMovement, columnMovement, posibleNumber);	
 }
