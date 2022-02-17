@@ -552,10 +552,12 @@ function evaluateAllWrongNumbers(actualBoard){
 }
 
 function drawMiniBoxCollision(rowCollisions, columnCollision, boxCollisions, actualBoard){
-	//console.log(rowCollisions);
-	//console.log(columnCollision);
-	// Box Collisions
-	//console.log(actualBoard);
+
+	if(boxCollisions.length === 0){
+		let boxesWrong = document.querySelectorAll('.boxWrongColor');
+		for(let boxWrong of boxesWrong) boxWrong.classList.remove('boxWrongColor');
+		return;
+	}
 	
 	for(let row = 0 ; row < BOARD_SIZE ; row ++){
 		for(let column = 0 ; column < BOARD_SIZE ; column++){
