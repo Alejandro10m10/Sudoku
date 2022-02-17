@@ -234,6 +234,7 @@ function putNumberInBoard(number){
 
 	if(numberBefore === number){
 		eraseMovement();
+		evaluateAllWrongNumbers(getActualBoard(0));
 		return;
 	}
 
@@ -252,8 +253,9 @@ function putNumberInBoard(number){
 		} else{
 			boxParagraphNumber.classList.add('wrongMovement');
 		}
-		
 	}
+
+	evaluateAllWrongNumbers(getActualBoard(0));
 	
 }
 
@@ -510,4 +512,71 @@ function isValidMovement(actualBoard, boxSelected, posibleNumber){
 	let columnMovement = positionMovement[1];
 
 	return isValidNumberPlacement(actualBoard, rowMovement, columnMovement, posibleNumber);	
+}
+
+function evaluateAllWrongNumbers(actualBoard){
+	let positions = [];
+	let wrongNumbers = document.querySelectorAll('.wrongMovement');
+
+	if(wrongNumbers.length === 0) return;
+
+	for(let i = 0; i < wrongNumbers.length ; i++){
+		let paragraphElement = (wrongNumbers[i]);
+		let number = parseInt(paragraphElement.textContent);
+		let miniBoxWrong = wrongNumbers[i].parentElement;
+		let dataWrong = getMiniBoxPositionInBoard(getActualBoard(1), miniBoxWrong);
+		dataWrong.push(number, paragraphElement);
+		positions.push(dataWrong);
+	}
+	
+	for(let i = 0; i < positions.length ; i++){
+		let rowMovement = positions[i][0][0];
+		let columnMovement =  positions[i][0][1];
+		let number = positions[i][1];
+		let paragraphElement = positions[i][2];
+
+		if(isOneNumberInColumn(actualBoard, columnMovement, number) === 1 &&
+			isOneNumberInRow(actualBoard, rowMovement, number) === 1){
+				(isOneNumberInBox(actualBoard, rowMovement, columnMovement, number) > 1 )
+					? paragraphElement.classList.add('wrongMovement')
+					: paragraphElement.classList.remove('wrongMovement');		
+		}
+	}
+	
+}
+
+
+function isOneNumberInColumn(board, column, number){
+	let columnNumbers = 0;
+	for(let i = 0; i < BOARD_SIZE ; i++){
+		if( board[i][column] === number){
+			columnNumbers++;
+		}
+	}
+	return columnNumbers;
+}
+
+function isOneNumberInRow(board, row, number){
+	let rowNumbers = 0;
+	for(let i = 0; i < BOARD_SIZE ; i++){
+		if( board[row][i] === number){
+			rowNumbers++;
+		}
+	}
+	return rowNumbers;
+}
+
+function isOneNumberInBox(board, row, column, number){
+	let boxRow = row - row % 3;
+	let boxColumn = column - column % 3;
+	let boxNumber = 0;
+	
+	for(let i = boxRow ; i < boxRow + 3 ; i++){
+	    for(let j = boxColumn ; j < boxColumn + 3 ; j++){
+	    	if(board[i][j] === number){
+	    	    boxNumber++;
+	    	}
+	    }
+	}
+	return boxNumber;
 }
