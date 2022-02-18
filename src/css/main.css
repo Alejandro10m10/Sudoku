@@ -226,6 +226,7 @@ header{
     width: 100%;
     padding: 12px 15px;
     background-color: var(--softWhite);
+    cursor: pointer;
 }
 
 .classicOptions__nav__ul__li:hover{
@@ -246,6 +247,12 @@ header{
     background-image: url('/src/assets/icon/game-icons.webp');
     background-position: 99.4565% .6369%;
     background-size: 345.3333% 309.3333%;
+}
+
+.classicOptions__nav__ul__li a .classicOptions__nav__ul__li--restart{
+    background-image: url('/src/assets/icon/game-icons.webp');
+    background-position: 54.4378% 68.3453%;
+    background-size: 287.7777% 249.4623%;
 }
 
 .classicOptions__nav__ul__li a p{
