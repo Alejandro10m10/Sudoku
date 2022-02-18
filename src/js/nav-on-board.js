@@ -601,13 +601,20 @@ function showHint(){
 		actualPosition = getMiniBoxPositionInBoard(userBoardDivd, miniBoxSelected),
 		positionNumers = getPositionInitialNumbers(board),
 		row = actualPosition[0][0],
-		column = actualPosition[0][1];
+		column = actualPosition[0][1],
+		allMiniBoxex = document.querySelectorAll('.game__box__inside');
 
 	if(!canErase(positionNumers, actualPosition)){
-		rightNumber = finalBoard[row][column];
-		miniBoxSelected.children[0].textContent = rightNumber;
+		let rightNumber = finalBoard[row][column];
+		let miniBoxNumber = miniBoxSelected.children[0];
 		board[row][column] = rightNumber;
-	}
 
-	
+		miniBoxNumber.textContent = rightNumber;
+		miniBoxNumber.classList.remove('numberCollision');
+		miniBoxNumber.classList.remove('selectedNumber');
+		miniBoxNumber.classList.add('strongBlue');
+		removeColorInAllSameNumbers();
+		getAllSameNumbersSelected(rightNumber, allMiniBoxex, miniBoxSelected);
+
+	}
 }
