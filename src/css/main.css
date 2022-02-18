@@ -594,7 +594,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     color: var(--strongBlue);
 }
 
-.wrongMovement{
+.numberCollision{
     color: var(--wrongMovement);
 }
 

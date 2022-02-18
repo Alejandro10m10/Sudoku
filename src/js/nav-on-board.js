@@ -1,7 +1,8 @@
 let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
 let btnUndoMovement = document.querySelector('#btnUndoMovement'),
 	btnEraseMovement = document.querySelector('#btnEraseMovement'),
-	btnCheckBox = document.querySelector('#checkMistakes');
+	btnCheckBox = document.querySelector('#checkMistakes').
+	btnHint = document.querySelector('#btnHint');
 let checkMistakesSelected = true; // Variable que nos permite conocer si el usuario activo o no activo la casilla
 
 // Variables to control the last movement on the board
@@ -10,7 +11,7 @@ let arrayMovements = [];
 btnUndoMovement.addEventListener('click', () => undoMovement(arrayMovements));
 btnEraseMovement.addEventListener('click', eraseMovement);
 btnCheckBox.addEventListener('click', checkMistakes);
-
+btnHint.addEventListener('click', showHint);
 
 /* Init the game */
 init();
@@ -249,9 +250,9 @@ function putNumberInBoard(number){
 		arrayMovements.push([boxSelected.parentElement, boxSelected, boxParagraphNumber, number]);
 
 		if(isValidMovement(actualBoard, boxSelected, number)){
-			boxParagraphNumber.classList.remove('wrongMovement');
+			boxParagraphNumber.classList.remove('numberCollision');
 		} else{
-			boxParagraphNumber.classList.add('wrongMovement');
+			boxParagraphNumber.classList.add('numberCollision');
 		}
 	}
 
@@ -516,7 +517,7 @@ function isValidMovement(actualBoard, boxSelected, posibleNumber){
 
 function evaluateAllWrongNumbers(actualBoard){
 	let positions = [];
-	let wrongNumbers = document.querySelectorAll('.wrongMovement');
+	let wrongNumbers = document.querySelectorAll('.numberCollision');
 
 	if(wrongNumbers.length === 0) return;
 
@@ -537,42 +538,20 @@ function evaluateAllWrongNumbers(actualBoard){
 		let number = positions[i][1];
 		let paragraphElement = positions[i][2];
 
+		//Quitar arreglo doble despues ? 
 		let arrayRow = isOneNumberInRow(actualBoard, rowMovement, number);
 		let arrayColumn = isOneNumberInColumn(actualBoard, columnMovement, number);
 		let arrayBox = isOneNumberInBox(actualBoard, rowMovement, columnMovement, number);
 
 		if(arrayColumn[0] === 1 && arrayRow[0] === 1){
 			(arrayBox[0] > 1 )
-				? paragraphElement.classList.add('wrongMovement')
-				: paragraphElement.classList.remove('wrongMovement');	
+				? paragraphElement.classList.add('numberCollision')
+				: paragraphElement.classList.remove('numberCollision');	
 		}
-		drawMiniBoxCollision(arrayRow[1], arrayColumn[1], arrayBox[1], userBoard);
+		//rowCollisionsOccurred(paragraphElement);
+		//drawMiniBoxCollision(arrayRow[1], arrayColumn[1], arrayBox[1], userBoard);
 	}
 	
-}
-
-function drawMiniBoxCollision(rowCollisions, columnCollision, boxCollisions, actualBoard){
-
-	if(boxCollisions.length === 0){
-		let boxesWrong = document.querySelectorAll('.boxWrongColor');
-		for(let boxWrong of boxesWrong) boxWrong.classList.remove('boxWrongColor');
-		return;
-	}
-	
-	for(let row = 0 ; row < BOARD_SIZE ; row ++){
-		for(let column = 0 ; column < BOARD_SIZE ; column++){
-			let miniBox = actualBoard[row][column];
-
-			for(let i = 0; i < boxCollisions.length ; i++){
-				let rowCollision = boxCollisions[i][0];
-				let columnCollision = boxCollisions[i][1];
-
-				if(rowCollision === row && columnCollision === column){
-					miniBox.classList.add('boxWrongColor');
-				}
-			}
-		}
-	}
 }
 
 function isOneNumberInColumn(board, column, number){
@@ -614,4 +593,21 @@ function isOneNumberInBox(board, row, column, number){
 	    }
 	}
 	return [boxNumber, numbersInvolved];
+}
+
+function showHint(){
+	let miniBoxSelected = document.querySelector('.box-inside-selected'),
+		userBoardDivd = getActualBoard(1),
+		actualPosition = getMiniBoxPositionInBoard(userBoardDivd, miniBoxSelected),
+		positionNumers = getPositionInitialNumbers(board),
+		row = actualPosition[0][0],
+		column = actualPosition[0][1];
+
+	if(!canErase(positionNumers, actualPosition)){
+		rightNumber = finalBoard[row][column];
+		miniBoxSelected.children[0].textContent = rightNumber;
+		board[row][column] = rightNumber;
+	}
+
+	
 }
