@@ -24,7 +24,9 @@
                     <img class="navigation__list__logo" src="./src/assets/icon/logo-sudoku.svg" alt="Logo Sudoku.com">
                 </li>
                 <li class="navigation__list">
+
                     <button id="btnNewGame">New Game</button>
+
                     <div class="navigation__list__desktop">
                         <a class="navigation__list__desktop__anchor navigation__list__desktop--tips" href="#">Sudoku Tips</a>
                         <a class="navigation__list__desktop__anchor navigation__list__desktop__anchor--trophy navigation__list__desktop__anchor__block" href="#">
@@ -180,6 +182,65 @@
                 </li>
             </ul>
         </nav>
+        <div>
+            <div class="tooltip-arrow">
+                            
+            </div>
+            <div class="new-game-menu"> <!-- no-display -->
+                <div class="new-game-menu__header">
+                    <p class="new-game-menu__header__title">Select Game Mode</p>
+                    <p class="new-game-menu__header__description">Current game progress will be lost</p>
+                    <div class="new-game-menu__buttons">
+                        <button id="btnClassicMode" class="new-game-menu__buttons--selected new-game-menu__buttons__style">Classic</button>
+                        <button id="btnKillerMode" class="new-game-menu__buttons__style">Killer
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="new-game-menu__classicOptions">
+                    <nav class="classicOptions__nav">
+                        <ul class="classicOptions__nav__ul">
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span class="classicOptions__nav__ul__li--easy-classic"></span>
+                                    <p>Easy</p>
+                                </a>
+                            </li>
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span class="classicOptions__nav__ul__li--medium-classic"></span>
+                                    <p>Medium</p>
+                                </a>
+                            </li>
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span class="classicOptions__nav__ul__li--hard-classic"></span>
+                                    <p>Hard</p>
+                                </a>
+                            </li>
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span class="classicOptions__nav__ul__li--expert-classic"></span>
+                                    <p>Expert</p>
+                                </a>
+                            </li>
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span class="classicOptions__nav__ul__li--evil-classic"></span>
+                                    <p>Evil</p>
+                                </a>
+                            </li>
+                            <li class="classicOptions__nav__ul__li">
+                                <a href="#">
+                                    <span <span class="classicOptions__nav__ul__li--restart"></span>
+                                    <p>Restart</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         <section class="game">
