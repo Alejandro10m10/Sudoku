@@ -133,11 +133,11 @@ header{
 
 .new-game-menu{
     z-index: 3;
-    width: 308px;
+    width: 270px;
     height: auto;
     position: absolute;
     top: 60px;
-    right: 2%;
+    right: 1%;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -200,62 +200,80 @@ header{
     border: 1px solid #0072e3;
 }
 
-.new-game-menu__classicOptions{
+.new-game-menu__classicOptions,
+.new-game-menu__killerOptions{
     width: 100%;
     height: 100%;
     margin-bottom: 15px;
 }
 
-.classicOptions__nav{
+.classicOptions__nav,
+.killerOptions__nav{
     width: 85%;
     margin: 0 auto;
     
 }
 
-.classicOptions__nav__ul__li:first-child{
+.classicOptions__nav__ul__li:first-child,
+.killerOptions__nav__ul__li:first-child{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-.classicOptions__nav__ul__li:last-child{
+.classicOptions__nav__ul__li:last-child,
+.killerOptions__nav__ul__li:last-child{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.classicOptions__nav__ul__li{
+.classicOptions__nav__ul__li,
+.killerOptions__nav__ul__li{
     width: 100%;
     padding: 12px 15px;
     background-color: var(--softWhite);
     cursor: pointer;
 }
 
-.classicOptions__nav__ul__li:hover{
+.classicOptions__nav__ul__li:hover,
+.killerOptions__nav__ul__li:hover{
     background-color: var(--strongGray);
 }
 
-.classicOptions__nav__ul__li a{
+.classicOptions__nav__ul__li a,
+.killerOptions__nav__ul__li a{
     display: flex;
     flex-direction: center;
     align-items: center;
 }
 
-.classicOptions__nav__ul__li a span{
+.classicOptions__nav__ul__li a span,
+.killerOptions__nav__ul__li a span{
     display: block;
     margin-right: 10px;
     width: 20px;
     height: 20px;
+}
+
+.classicOptions__nav__ul__li a span{
     background-image: url('/src/assets/icon/game-icons.webp');
     background-position: 99.4565% .6369%;
     background-size: 345.3333% 309.3333%;
 }
 
-.classicOptions__nav__ul__li a .classicOptions__nav__ul__li--restart{
+.killerOptions__nav__ul__li a span{
     background-image: url('/src/assets/icon/game-icons.webp');
+    background-position: 99.4565% 49.0445%;
+    background-size: 345.3333% 309.3333%;
+}
+
+.classicOptions__nav__ul__li a .classicOptions__nav__ul__li--restart,
+.killerOptions__nav__ul__li a .killerOptions__nav__ul__li--restart{
     background-position: 54.4378% 68.3453%;
     background-size: 287.7777% 249.4623%;
 }
 
-.classicOptions__nav__ul__li a p{
+.classicOptions__nav__ul__li a p,
+.killerOptions__nav__ul__li a p{
     font-size: 1.6rem;
     font-weight: bold;
     color: #0071e3c2;
@@ -323,7 +341,8 @@ main{
 
 .game .game__settings .game__settings__timer .no-display,
 .mode-menus .no-display,
-.language-menu .no-display{
+.language-menu .no-display,
+.new-game-menu .no-display{
     display: none;
 }
 
@@ -827,6 +846,13 @@ footer{
 
 
 /* Media Queries */
+@media (min-width: 330px) {
+    .new-game-menu{
+        right: 2%;
+        width: 308px;
+    }
+}
+
 @media (min-width: 500px) {
     .game__content{
         width: 464px;
