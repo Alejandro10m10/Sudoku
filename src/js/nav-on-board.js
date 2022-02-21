@@ -563,6 +563,44 @@ function evalueateAllWrongInvolvedBoxes(actualBoard){
 			putWrongBox(actualBoardDiv, boxCollisionsPositions);
 		}
 	}
+
+	evaluateAllWrongNumbers(actualBoard);
+}
+
+function evaluateAllWrongNumbers(actualBoard){
+	let positions = [];
+	let wrongNumbers = document.querySelectorAll('.numberCollision');
+
+	if(wrongNumbers.length === 0) return;
+
+	let userBoard = getActualBoard(1);
+
+	for(let i = 0; i < wrongNumbers.length ; i++){
+		let paragraphElement = (wrongNumbers[i]);
+		let number = parseInt(paragraphElement.textContent);
+		let miniBoxWrong = wrongNumbers[i].parentElement;
+		let dataWrong = getMiniBoxPositionInBoard(userBoard, miniBoxWrong);
+		dataWrong.push(number, paragraphElement);
+		positions.push(dataWrong);
+	}
+	
+	for(let i = 0; i < positions.length ; i++){
+		let rowMovement = positions[i][0][0];
+		let columnMovement =  positions[i][0][1];
+		let number = positions[i][1];
+		let paragraphElement = positions[i][2];
+
+		let arrayRow = numberOfCollisionInRow(actualBoard, rowMovement, number);
+		let arrayColumn = numberOfCollisionInColumn(actualBoard, columnMovement, number);
+		let arrayBox = numberOfCollisionInBox(actualBoard, rowMovement, columnMovement, number);
+
+		if(arrayColumn[0] === 1 && arrayRow[0] === 1){
+			(arrayBox[0] > 1 )
+				? paragraphElement.classList.add('numberCollision')
+				: paragraphElement.classList.remove('numberCollision');	
+		}
+	}
+	
 }
 
 function putWrongBox(actualBoardDiv, wrongBoxesPositions){
