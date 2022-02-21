@@ -235,7 +235,7 @@ function putNumberInBoard(number){
 
 	if(numberBefore === number){
 		eraseMovement();
-		evaluateAllWrongNumbers(getActualBoard(0));
+		evalueateAllWrongInvolvedBoxes(getActualBoard(0));
 		return;
 	}
 
@@ -256,7 +256,7 @@ function putNumberInBoard(number){
 		}
 	}
 
-	evaluateAllWrongNumbers(getActualBoard(0));
+	evalueateAllWrongInvolvedBoxes(getActualBoard(0));
 	
 }
 
@@ -468,7 +468,7 @@ function eraseMovement(){
 	if(!canErase(positionNumers, positionMiniBoxNumber)){
 		let paragraphNumberSelected = miniBoxNumberSelected.children[0];
 		paragraphNumberSelected.innerHTML = "";
-		arrayMovements.pop();
+		//arrayMovements.pop();
 		removeColorInAllSameNumbers();	
 	}
 }
@@ -515,84 +515,97 @@ function isValidMovement(actualBoard, boxSelected, posibleNumber){
 	return isValidNumberPlacement(actualBoard, rowMovement, columnMovement, posibleNumber);	
 }
 
-function evaluateAllWrongNumbers(actualBoard){
-	let positions = [];
-	let wrongNumbers = document.querySelectorAll('.numberCollision');
+function evalueateAllWrongInvolvedBoxes(actualBoard){
+	let allWrongInvolvedElements = document.querySelectorAll('.numberCollision');
+	let involvedBoxes  = document.querySelectorAll('.boxWrongColor');
+	
+	for(let involvedBox of involvedBoxes) involvedBox.classList.remove('boxWrongColor');
 
-	if(wrongNumbers.length === 0) return;
+	if(allWrongInvolvedElements.length === 0) return;
 
-	let userBoard = getActualBoard(1);
+	let actualBoardDiv = getActualBoard(1);
+	let allWrongInvolvedBoxes = [];
 
-	for(let i = 0; i < wrongNumbers.length ; i++){
-		let paragraphElement = (wrongNumbers[i]);
-		let number = parseInt(paragraphElement.textContent);
-		let miniBoxWrong = wrongNumbers[i].parentElement;
-		let dataWrong = getMiniBoxPositionInBoard(userBoard, miniBoxWrong);
-		dataWrong.push(number, paragraphElement);
-		positions.push(dataWrong);
+	for(let allWrongInvolvedElement of allWrongInvolvedElements){
+		allWrongInvolvedBoxes.push([allWrongInvolvedElement.parentElement, allWrongInvolvedElement, parseInt(allWrongInvolvedElement.textContent)]);
 	}
 	
-	for(let i = 0; i < positions.length ; i++){
-		let rowMovement = positions[i][0][0];
-		let columnMovement =  positions[i][0][1];
-		let number = positions[i][1];
-		let paragraphElement = positions[i][2];
+	for(let i = 0 ; i < allWrongInvolvedBoxes.length ; i++){
+		let wrongInvolvedBox = allWrongInvolvedBoxes[i][0];
+		let wrongInvolvedNumber = allWrongInvolvedBoxes[i][2];
+		wrongInvolvedBox.classList.remove('boxWrongColor');
 
-		//Quitar arreglo doble despues ? 
-		let arrayRow = isOneNumberInRow(actualBoard, rowMovement, number);
-		let arrayColumn = isOneNumberInColumn(actualBoard, columnMovement, number);
-		let arrayBox = isOneNumberInBox(actualBoard, rowMovement, columnMovement, number);
+		let boxPosition = getMiniBoxPositionInBoard(actualBoardDiv, wrongInvolvedBox);
+		let rowPosition = boxPosition[0][0];
+		let columnPosition = boxPosition[0][1];
+		
+		let rowCollisions = numberOfCollisionInRow(actualBoard, rowPosition, wrongInvolvedNumber);
+		let rowNumberCollisions = rowCollisions[0];
+		let rowCollisionsPositions = rowCollisions[1];
 
-		if(arrayColumn[0] === 1 && arrayRow[0] === 1){
-			(arrayBox[0] > 1 )
-				? paragraphElement.classList.add('numberCollision')
-				: paragraphElement.classList.remove('numberCollision');	
-		}
-		//rowCollisionsOccurred(paragraphElement);
-		//drawMiniBoxCollision(arrayRow[1], arrayColumn[1], arrayBox[1], userBoard);
-	}
-	
-}
+		let columnCollisions = numberOfCollisionInColumn(actualBoard, columnPosition, wrongInvolvedNumber);
+		let columnNumberCollisions = columnCollisions[0];
+		let columnCollisionsPositions = columnCollisions[1];
 
-function isOneNumberInColumn(board, column, number){
-	let numbersInvolved = [];
-	let columnNumbers = 0;
-	for(let i = 0; i < BOARD_SIZE ; i++){
-		if( board[i][column] === number){
-			numbersInvolved.push([i, column]);
-			columnNumbers++;
+		if(rowNumberCollisions > 1 ){
+			putWrongBox(actualBoardDiv, rowCollisionsPositions);
+		} 
+		
+		if(columnNumberCollisions > 1){
+			putWrongBox(actualBoardDiv, columnCollisionsPositions);
 		}
 	}
-	return [columnNumbers, numbersInvolved];
 }
 
-function isOneNumberInRow(board, row, number){
-	let numbersInvolved = [];
+function putWrongBox(actualBoardDiv, wrongBoxesPositions){
+	for(let row = 0; row < BOARD_SIZE ; row++){
+		for(let column = 0; column < BOARD_SIZE ; column++){
+			for(let i = 0 ; i < wrongBoxesPositions.length; i++){
+				if(row === wrongBoxesPositions[i][0] && column === wrongBoxesPositions[i][1]){
+					actualBoardDiv[row][column].classList.add('boxWrongColor');
+				}
+			}
+		}
+	}
+}
+
+function numberOfCollisionInRow(board, row, number){
 	let rowNumbers = 0;
+	let rowInvolvedPositions = [];
 	for(let i = 0; i < BOARD_SIZE ; i++){
 		if( board[row][i] === number){
-			numbersInvolved.push([row, i]);
+			rowInvolvedPositions.push([row, i]);
 			rowNumbers++;
 		}
 	}
-	return [rowNumbers, numbersInvolved];
+	return [rowNumbers, rowInvolvedPositions];
+}
+
+function numberOfCollisionInColumn(board, column, number){
+	let columnNumbers = 0;
+	let collumnInvolvedPositions = [];
+	for(let i = 0; i < BOARD_SIZE ; i++){
+		if( board[i][column] === number){
+			collumnInvolvedPositions.push([i, column]);
+			columnNumbers++;
+		}
+	}
+	return [columnNumbers, collumnInvolvedPositions];
 }
 
 function isOneNumberInBox(board, row, column, number){
 	let boxRow = row - row % 3;
 	let boxColumn = column - column % 3;
 	let boxNumber = 0;
-	let numbersInvolved = [];
 	
 	for(let i = boxRow ; i < boxRow + 3 ; i++){
 	    for(let j = boxColumn ; j < boxColumn + 3 ; j++){
 	    	if(board[i][j] === number){
-				numbersInvolved.push([i, j]);
 	    	    boxNumber++;
 	    	}
 	    }
 	}
-	return [boxNumber, numbersInvolved];
+	return boxNumber;
 }
 
 function showHint(){
@@ -615,6 +628,5 @@ function showHint(){
 		miniBoxNumber.classList.add('strongBlue');
 		removeColorInAllSameNumbers();
 		getAllSameNumbersSelected(rightNumber, allMiniBoxex, miniBoxSelected);
-
 	}
 }
