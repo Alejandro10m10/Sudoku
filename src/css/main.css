@@ -1267,6 +1267,17 @@ footer{
         width: 156px;
         height: 22px;
     }
+
+    /* Select Game Mode DropDownList */
+    .new-game-menu{
+        top: 209px;
+        right: 12%;
+    }
+
+    .tooltip-arrow:after{
+        top: 189px;
+        right: 24%;
+    }
 }
 
 
@@ -1333,7 +1344,22 @@ footer{
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Select Game Mode DropDownList */
+    .new-game-menu{
+        left: 41.5%;
+    }
+
+    .tooltip-arrow:after{
+        left: 59%;
+    }
 }
+
+@media (min-width: 1240PX) {
+    .tooltip-arrow:after{
+        left: 54%;
+    }
+}
+
 
 @media (min-width: 1400px) {
     .navigation{
@@ -1342,5 +1368,13 @@ footer{
 
     main{
         right: -10%;
+    }
+
+    .new-game-menu{
+        left: 44%;
+    }
+
+    .tooltip-arrow:after{
+        left: 54.5%;
     }
 }
