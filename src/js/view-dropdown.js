@@ -52,3 +52,19 @@ function showGameModeMenu(){
         selectTooltipArrow.classList.add(classNameNoDisplay);
     }
 }
+
+/* Event to close the gamemode selection menu if pressed outside of this element */
+window.addEventListener('click', function(e) {
+    if(!selectGameModeMenu.classList.contains(classNameNoDisplay)){
+        if((e.target) === document.querySelector('#btnNewGame')){
+            return;
+        } else{
+            if (selectGameModeMenu.contains(e.target)) {
+            } else {
+                selectGameModeMenu.classList.add(classNameNoDisplay);
+                selectTooltipArrow.classList.add(classNameNoDisplay);
+                showGameModeMenuDropdownList = false;
+            }
+        }
+    } 
+})
