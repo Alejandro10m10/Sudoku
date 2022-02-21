@@ -443,13 +443,13 @@ function undoMovement(arrayMovements){
 		getRowMiniBoxesInvolved(lastMiniBox);
 
 		removeColorInAllSameNumbers();
-		removeColorInWrongInvolvedNumbers();
 
 		lastParagraph.innerHTML = "";
 	}
 
 	if(arryMovementsLength !== 1){ 
-		arrayMovements.pop();		
+		arrayMovements.pop();
+		evalueateAllWrongInvolvedBoxes(getActualBoard(0));		
 	}
 }
 
