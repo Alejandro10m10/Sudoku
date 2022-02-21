@@ -3,14 +3,16 @@ let btnGameMode = document.querySelector('#mode-game-dropdown'),
     menuDropdownElement = document.querySelector('.mode-menu-dropdown'),
     languageDropdownElement = document.querySelector('.language-menu-dropdown'),
     arrowGameMode = document.querySelector('.mode-menu__arrowIcon'),
-    arrowLanguage = document.querySelector('.language-menu__arrowIcon'),
+    arrowLanguage = document.querySelector('.language-menu__arrowIcon');
+
+let selectGameModeMenu = document.querySelector('.new-game-menu'),
+    selectTooltipArrow =  document.querySelector('.tooltip-arrow'),
+    showGameModeMenuDropdownList = false,
     btnClassicMode = document.querySelector('#btnClassicMode'),
     btnKillerMode = document.querySelector('#btnKillerMode'),
     classicModeDropdownElement = document.querySelector('.new-game-menu__classicOptions'),
     killerModeDropdownElement = document.querySelector('.new-game-menu__killerOptions');
     
-
-
 const classNameNoDisplay = 'no-display',
       classRotateElement = 'rotate';
 
@@ -33,8 +35,20 @@ function showDropdownList(firstElement, firstArrow, secondElement, secondArrow){
 
 function showModeDropdownList(showElement, showDropDownList, hideElement, hideDropDownList){
     showElement.classList.add('new-game-menu__buttons--selected');
-    showDropDownList.classList.remove('no-display');
+    showDropDownList.classList.remove(classNameNoDisplay);
 
     hideElement.classList.remove('new-game-menu__buttons--selected');
-    hideDropDownList.classList.add('no-display');
+    hideDropDownList.classList.add(classNameNoDisplay);
+}
+
+function showGameModeMenu(){
+    showGameModeMenuDropdownList = !showGameModeMenuDropdownList;
+
+    if(showGameModeMenuDropdownList){
+        selectGameModeMenu.classList.remove(classNameNoDisplay);
+        selectTooltipArrow.classList.remove(classNameNoDisplay);
+    } else{
+        selectGameModeMenu.classList.add(classNameNoDisplay);
+        selectTooltipArrow.classList.add(classNameNoDisplay);
+    }
 }

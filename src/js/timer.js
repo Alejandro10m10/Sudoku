@@ -8,7 +8,8 @@ playGame.addEventListener('click', playTimer);
 newGameEventListener(newGame);
 
 function newGameEventListener(element){
-    element.addEventListener('click', resetTimer);
+    element.addEventListener('click', showGameModeMenu);
+    /* element.addEventListener('click', resetTimer); */
 }
 
 let sec = 0,

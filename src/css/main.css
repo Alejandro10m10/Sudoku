@@ -342,7 +342,7 @@ main{
 .game .game__settings .game__settings__timer .no-display,
 .mode-menus .no-display,
 .language-menu .no-display,
-.new-game-menu .no-display{
+.new-game__content .no-display{
     display: none;
 }
 
