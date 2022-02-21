@@ -853,6 +853,17 @@ footer{
     }
 }
 
+@media (min-width: 400px) {
+    .game__content{
+        width: 354px;
+        height: 354px;
+    }
+
+    .number{
+        font-size: 3rem;
+    }
+}
+
 @media (min-width: 500px) {
     .game__content{
         width: 464px;
