@@ -443,6 +443,7 @@ function undoMovement(arrayMovements){
 		getRowMiniBoxesInvolved(lastMiniBox);
 
 		removeColorInAllSameNumbers();
+		removeColorInWrongInvolvedNumbers();
 
 		lastParagraph.innerHTML = "";
 	}
@@ -459,6 +460,13 @@ function removeColorInAllSameNumbers(){
 	}
 }
 
+function removeColorInWrongInvolvedNumbers(){
+	let allSameNumbers = document.querySelectorAll('.boxWrongColor');
+	for(let allSameNumber of allSameNumbers){
+		allSameNumber.classList.remove('boxWrongColor');
+	}
+}
+
 function eraseMovement(){
 	let miniBoxNumberSelected = document.querySelector('.box-inside-selected')
 	let actualBoard = getActualBoard(1);
@@ -470,6 +478,7 @@ function eraseMovement(){
 		paragraphNumberSelected.innerHTML = "";
 		//arrayMovements.pop();
 		removeColorInAllSameNumbers();	
+		removeColorInWrongInvolvedNumbers();
 	}
 }
 
