@@ -16,8 +16,8 @@ const classNameNoDisplay = 'no-display',
 
 btnLanguage.addEventListener('click', () => showDropdownList(languageDropdownElement, arrowLanguage, menuDropdownElement, arrowGameMode));
 btnGameMode.addEventListener('click', () => showDropdownList(menuDropdownElement, arrowGameMode, languageDropdownElement, arrowLanguage));
-btnClassicMode.addEventListener('click', selectMode); //Value true -> Classic
-btnKillerMode.addEventListener('click', selectMode); //Value false -> Killer
+btnClassicMode.addEventListener('click', () => showModeDropdownList(btnClassicMode, classicModeDropdownElement, btnKillerMode, killerModeDropdownElement)); //Value true -> Classic
+btnKillerMode.addEventListener('click', () => showModeDropdownList(btnKillerMode, killerModeDropdownElement, btnClassicMode, classicModeDropdownElement)); //Value false -> Killer
 
 function showDropdownList(firstElement, firstArrow, secondElement, secondArrow){
     if(firstElement.classList.contains(classNameNoDisplay)){
@@ -31,22 +31,10 @@ function showDropdownList(firstElement, firstArrow, secondElement, secondArrow){
     }
 }
 
+function showModeDropdownList(showElement, showDropDownList, hideElement, hideDropDownList){
+    showElement.classList.add('new-game-menu__buttons--selected');
+    showDropDownList.classList.remove('no-display');
 
-function selectMode(){
-    if(killerModeDropdownElement.classList.contains('no-display')){
-        killerModeDropdownElement.classList.remove('no-display');
-        btnKillerMode.classList.add('new-game-menu__buttons--selected');
-    } else{
-        killerModeDropdownElement.classList.add('no-display');
-        btnKillerMode.classList.remove('new-game-menu__buttons--selected');
-    }
-
-    if(classicModeDropdownElement.classList.contains('no-display')){
-        classicModeDropdownElement.classList.remove('no-display');
-        btnClassicMode.classList.add('new-game-menu__buttons--selected');
-    } else{
-        classicModeDropdownElement.classList.add('no-display');
-        btnClassicMode.classList.remove('new-game-menu__buttons--selected');
-    }
-
+    hideElement.classList.remove('new-game-menu__buttons--selected');
+    hideDropDownList.classList.add('no-display');
 }
