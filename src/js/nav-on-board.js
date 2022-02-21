@@ -547,12 +547,20 @@ function evalueateAllWrongInvolvedBoxes(actualBoard){
 		let columnNumberCollisions = columnCollisions[0];
 		let columnCollisionsPositions = columnCollisions[1];
 
+		let boxCollisions = numberOfCollisionInBox(actualBoard, rowPosition, columnPosition, wrongInvolvedNumber);
+		let boxNumberCollisions = boxCollisions[0];
+		let boxCollisionsPositions = boxCollisions[1];
+
 		if(rowNumberCollisions > 1 ){
 			putWrongBox(actualBoardDiv, rowCollisionsPositions);
 		} 
 		
 		if(columnNumberCollisions > 1){
 			putWrongBox(actualBoardDiv, columnCollisionsPositions);
+		}
+
+		if(boxNumberCollisions > 1){
+			putWrongBox(actualBoardDiv, boxCollisionsPositions);
 		}
 	}
 }
@@ -571,41 +579,43 @@ function putWrongBox(actualBoardDiv, wrongBoxesPositions){
 
 function numberOfCollisionInRow(board, row, number){
 	let rowNumbers = 0;
-	let rowInvolvedPositions = [];
+	let rowsInvolvedPositions = [];
 	for(let i = 0; i < BOARD_SIZE ; i++){
 		if( board[row][i] === number){
-			rowInvolvedPositions.push([row, i]);
+			rowsInvolvedPositions.push([row, i]);
 			rowNumbers++;
 		}
 	}
-	return [rowNumbers, rowInvolvedPositions];
+	return [rowNumbers, rowsInvolvedPositions];
 }
 
 function numberOfCollisionInColumn(board, column, number){
 	let columnNumbers = 0;
-	let collumnInvolvedPositions = [];
+	let columnsInvolvedPositions = [];
 	for(let i = 0; i < BOARD_SIZE ; i++){
 		if( board[i][column] === number){
-			collumnInvolvedPositions.push([i, column]);
+			columnsInvolvedPositions.push([i, column]);
 			columnNumbers++;
 		}
 	}
-	return [columnNumbers, collumnInvolvedPositions];
+	return [columnNumbers, columnsInvolvedPositions];
 }
 
-function isOneNumberInBox(board, row, column, number){
+function numberOfCollisionInBox(board, row, column, number){
 	let boxRow = row - row % 3;
 	let boxColumn = column - column % 3;
 	let boxNumber = 0;
+	let boxexInvolvedPositions = [];
 	
 	for(let i = boxRow ; i < boxRow + 3 ; i++){
 	    for(let j = boxColumn ; j < boxColumn + 3 ; j++){
 	    	if(board[i][j] === number){
+				boxexInvolvedPositions.push([i, j]);
 	    	    boxNumber++;
 	    	}
 	    }
 	}
-	return boxNumber;
+	return [boxNumber, boxexInvolvedPositions];
 }
 
 function showHint(){
