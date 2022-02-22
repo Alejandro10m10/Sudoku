@@ -88,6 +88,7 @@ function createOverlayElement(){
     overlayElement.className = "game__content__pause-overlay";
     let pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="icon-play-big game__content__pause-overlay--icon" viewBox="0 0 60 60"><g fill="none" fill-rule="evenodd"><circle cx="30" cy="30" r="30" fill="#0072E3"></circle><path fill="#FFF" d="M39.12 31.98l-12.56 8.64a2.4 2.4 0 01-3.76-1.98V21.36a2.4 2.4 0 013.76-1.97l12.56 8.63a2.4 2.4 0 010 3.96z"></path></g></svg>'
     overlayElement.innerHTML = pauseIcon;
+    overlayElement.addEventListener('click', playTimer);
 
     return overlayElement;
 }
