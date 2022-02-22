@@ -488,6 +488,7 @@ input:checked + .slider .toggleSwitch__icon:before{
 }
 
 .game__content{
+    position: relative;
     width: 250px;
     height: 250px;
     margin: 0 auto;
@@ -495,6 +496,23 @@ input:checked + .slider .toggleSwitch__icon:before{
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3,  1fr);
     border: 2.5px solid var(--purple);
+}
+
+.game__content__pause-overlay{
+    position: absolute;
+    left: -2.5px;
+    top: -2px;
+    display: grid;
+    place-items: center;
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.479);
+    cursor: pointer;
+}
+
+.game__content__pause-overlay--icon{
+    width: 60px;
+    height: 60px;
 }
 
 .game__box{
@@ -854,7 +872,8 @@ footer{
 }
 
 @media (min-width: 400px) {
-    .game__content{
+    .game__content,
+    .game__content__pause-overlay{
         width: 354px;
         height: 354px;
     }
@@ -865,7 +884,8 @@ footer{
 }
 
 @media (min-width: 500px) {
-    .game__content{
+    .game__content,
+    .game__content__pause-overlay{
         width: 464px;
         height: 464px;
     }
@@ -881,7 +901,8 @@ footer{
 
 @media (min-width: 722px) {
 
-    .game__content{
+    .game__content,
+    .game__content__pause-overlay{
         width: 324px;
         height: 324px;
         place-self: center;
@@ -970,7 +991,8 @@ footer{
         margin-top: 20px;
     }
 
-    .game__content{
+    .game__content,
+    .game__content__pause-overlay{
         width: 464px;
         height: 464px;
     }
@@ -1303,7 +1325,8 @@ footer{
         padding: 0 4.5%;
     }
 
-    .game__content{
+    .game__content,
+    .game__content__pause-overlay{
         width: 426px;
         height: 426px;
     }
