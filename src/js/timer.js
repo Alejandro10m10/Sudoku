@@ -3,8 +3,9 @@ let timerElement = document.querySelector('#gameTime'),
     playGame = document.querySelector('#btnPlayGame'),
     newGame = document.querySelector('#btnNewGame');
 
-let overlayElement = createOverlayElement(),
-    gameContent = document.querySelector('.game__content');;
+let isGameInPaused = false;
+    overlayElement = createOverlayElement(),
+    gameContent = document.querySelector('.game__content');
 
 pauseGame.addEventListener('click', pauseTimer);
 playGame.addEventListener('click', playTimer);
@@ -94,8 +95,12 @@ function createOverlayElement(){
 }
 
 function showPauseOverlay(value){
-    (value)
-        ?  gameContent.appendChild(overlayElement)
-        : gameContent.removeChild(overlayElement);
+    if(value){
+        gameContent.appendChild(overlayElement);
+        isGameInPaused = true;
+    } else{
+        gameContent.removeChild(overlayElement);
+        isGameInPaused = false;
+    }
 }
 

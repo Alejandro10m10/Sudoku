@@ -227,7 +227,17 @@ function setButtonsEvent(){
 	}
 }
 
+function isGamePaused(){
+	if(isGameInPaused){
+		showPauseOverlay(false);
+		return true;
+	}
+}
+
 function putNumberInBoard(number){
+
+	if(isGamePaused()) return;
+
 	let actualBoard = getActualBoard(0);
 	let boxSelected = document.querySelector('.box-inside-selected');
 	let boxParagraphNumber = boxSelected.childNodes[0];
