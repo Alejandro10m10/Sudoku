@@ -229,7 +229,7 @@ function setButtonsEvent(){
 
 function isGamePaused(){
 	if(isGameInPaused){
-		showPauseOverlay(false);
+		playTimer();
 		return true;
 	}
 }

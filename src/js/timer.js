@@ -61,8 +61,7 @@ function timer(){
 
 function pauseTimer(){
     clearTimeout(t);
-    displayElement(pauseGame, false);
-    displayElement(playGame, true);
+    showPlayPauseButtons(true, false);
     showPauseOverlay(true);
 }
 
@@ -73,9 +72,13 @@ function resetTimer(){
 
 function playTimer(){
     timer();
-    displayElement(pauseGame, true);
-    displayElement(playGame, false);
+    showPlayPauseButtons(false, true);
     showPauseOverlay(false);
+}
+
+function showPlayPauseButtons(playValue, pauseValue){
+    displayElement(playGame, playValue);
+    displayElement(pauseGame, pauseValue);
 }
 
 function displayElement(element, value){
