@@ -429,6 +429,9 @@ function putNumberInBox(array, start, finish){
 
 /* Buttons controll the game */
 function undoMovement(arrayMovements){
+
+	if(isGamePaused()) return;
+
 	let arryMovementsLength = arrayMovements.length;
 
 	let lastMiniBox,
@@ -478,6 +481,9 @@ function removeColorInWrongInvolvedNumbers(){
 }
 
 function eraseMovement(){
+
+	if(isGamePaused()) return;
+
 	let miniBoxNumberSelected = document.querySelector('.box-inside-selected')
 	let actualBoard = getActualBoard(1);
 	let positionMiniBoxNumber = getMiniBoxPositionInBoard(actualBoard, miniBoxNumberSelected);
@@ -676,6 +682,9 @@ function numberOfCollisionInBox(board, row, column, number){
 }
 
 function showHint(){
+
+	if(isGamePaused()) return;
+
 	let miniBoxSelected = document.querySelector('.box-inside-selected'),
 		userBoardDivd = getActualBoard(1),
 		actualPosition = getMiniBoxPositionInBoard(userBoardDivd, miniBoxSelected),
