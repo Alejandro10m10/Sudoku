@@ -1,14 +1,5 @@
 let classicOptionsElements = document.querySelectorAll('.classicOptionElement');
-
-setSelectGameModeEvents(classicOptionsElements);
-
-function setSelectGameModeEvents(elements){
-	for(let element of elements) element.addEventListener('click', () => selectGameMode(element.value));
-}
-
-function selectGameMode(value){
-	console.log(value);
-}
+let killerOptionsElements = document.querySelectorAll('.killerOptionElement');
 
 let emptyBoard = [
 	[0,0,0,0,0,0,0,0,0],
@@ -44,6 +35,16 @@ let easyClassicBoards = [[
 	[6,4,9,0,3,1,0,5,7],
 	[5,0,0,6,0,0,0,0,4],
 	[8,0,7,5,0,9,0,0,0],
+], [
+	[7,0,2,0,5,0,6,0,0],
+	[0,0,0,0,0,3,0,0,0],
+	[1,0,0,0,0,9,5,0,0],
+	[8,0,0,0,0,0,0,9,0],
+	[0,4,3,0,0,0,7,5,0],
+	[0,9,0,0,0,0,0,0,8],
+	[0,0,9,7,0,0,0,0,5],
+	[0,0,0,2,0,0,0,0,0],
+	[0,0,7,0,4,0,2,0,3],
 ]];
 
 let mediumClassicBoards = [[
@@ -142,4 +143,36 @@ let classicBoards = {
 	'evilClassicBoards': evilClassicBoards,
 };
 
-console.log(classicBoards);
+let killerBoards = {
+	'killerEasyBoards': mediumClassicBoards,
+	'killerMediumBoards': hardClassicBoards,
+	'killerHardBoards': expertClassicBoards,
+	'killerExpertBoards': evilClassicBoards,
+};
+
+setSelectGameModeEvents(classicOptionsElements, classicBoards);
+setSelectGameModeEvents(killerOptionsElements, killerBoards);
+
+function setSelectGameModeEvents(elements, boardObject){
+	for(let element of elements) element.addEventListener('click', () => selectGameMode(element.value, boardObject)); 
+}
+
+function selectGameMode(value, boardObject){
+	let gameBoardsLength;
+
+	if(boardObject.hasOwnProperty(value)){
+		gameBoardsLength = boardObject[value].length -1;
+		if(gameBoardsLength === 0) return; 
+	} else {
+		return;
+	}
+
+	let randomBoard =  boardObject[value][[getRandomNumber(0, gameBoardsLength)]]; 
+	showGameModeMenu();
+	fillBoard(randomBoard);
+	return randomBoard;
+}
+
+function getRandomNumber(min, max){
+	return Math.floor(Math.random() * (max - min +1)) + min;
+}
