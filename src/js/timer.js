@@ -63,6 +63,7 @@ function pauseTimer(){
     clearTimeout(t);
     showPlayPauseButtons(true, false);
     showPauseOverlay(true);
+    removeElementsInBoardTemporally();
 }
 
 function resetTimer(){
@@ -106,4 +107,3 @@ function showPauseOverlay(value){
         isGameInPaused = false;
     }
 }
-

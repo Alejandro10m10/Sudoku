@@ -506,7 +506,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     place-items: center;
     width: 250px;
     height: 250px;
-    background-color: rgba(255, 255, 255, 0.479);
+    /* background-color: rgba(255, 255, 255, 0.363); */
     cursor: pointer;
 }
 

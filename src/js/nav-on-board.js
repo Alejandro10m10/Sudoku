@@ -234,6 +234,19 @@ function isGamePaused(){
 	}
 }
 
+let garbage = [];
+
+function removeElementsInBoardTemporally(){
+	let lastMiniBoxSelected = document.querySelector('.box-inside-selected');
+	let lastUserBoard = getActualBoard(0);
+	let lastBoxSelected = lastMiniBoxSelected.parentElement;
+	fillBoard(emptyBoard);
+	removeSelectBoxInvolved();
+	lastMiniBoxSelected.classList.remove('box-inside-selected');
+	lastBoxSelected.classList.remove('box-selected');
+	garbage.push(lastUserBoard, lastBoxSelected, lastMiniBoxSelected);
+}
+
 function putNumberInBoard(number){
 
 	if(isGamePaused()) return;
@@ -374,12 +387,12 @@ function getActualBoard(value){ // 0 - Numbers   1 - Divs
 
 /* Fill the board */ 
 function fillBoard(board){
-	coverBoxRow(0, 0, 3);
-	coverBoxRow(3, 3, 6);
-	coverBoxRow(6, 6, 9);
+	coverBoxRow(0, 0, 3, board);
+	coverBoxRow(3, 3, 6, board);
+	coverBoxRow(6, 6, 9, board);
 }
 
-function coverBoxRow(row, start, finish){
+function coverBoxRow(row, start, finish, board){
 	let i = 0;
 	let iteration = 0;
 	let limit = 3;
@@ -398,7 +411,7 @@ function coverBoxRow(row, start, finish){
 		} 
 		i++;
 	}
-	putNumberInBox(boxesArray, start, finish);
+	putNumberInBox(boxesArray, start, finish, board);
 }
 
 function iterationRowBoard(iteration, limit, box){
@@ -408,7 +421,7 @@ function iterationRowBoard(iteration, limit, box){
 	}
 }
 
-function putNumberInBox(array, start, finish){
+function putNumberInBox(array, start, finish, board){
 	let boardArrayNumbers = []
 	for(let j = start; j < finish ; j++){
 		for(let k = 0 ; k < BOARD_SIZE ; k++){
