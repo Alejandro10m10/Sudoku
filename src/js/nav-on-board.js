@@ -246,20 +246,25 @@ function removeElementsInBoardTemporally(){
 	removeColorInAllSameNumbers();
 	lastMiniBoxSelected.classList.remove('box-inside-selected');
 	lastBoxSelected.classList.remove('box-selected');
+
+	removeColorInWrongInvolvedNumbers();
+	
 	garbage.push(lastUserBoard, lastBoxSelected, lastMiniBoxSelected, lastNumberInMiniBox);
 }
 
 function putBackTemporallyElementsInBoard(){
-	fillBoard(garbage[0]);
+	let actualBoard = garbage[0]
 	let lastBoxSelected = garbage[1];
 	let lastMiniBoxSelected = garbage[2];
 	let lastNumberInMiniBox =  garbage[3];
 	let allMiniBoxex = document.querySelectorAll('.game__box__inside');
 
+	fillBoard(actualBoard);
 	lastBoxSelected.classList.add('box-selected');
 	lastMiniBoxSelected.classList.add('box-inside-selected');
 	getRowMiniBoxesInvolved(lastMiniBoxSelected);
 	getAllSameNumbersSelected(lastNumberInMiniBox, allMiniBoxex, lastMiniBoxSelected);
+	evalueateAllWrongInvolvedBoxes(actualBoard);
 
 	garbage = [];
 }
