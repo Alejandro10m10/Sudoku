@@ -207,73 +207,86 @@ header{
     margin-bottom: 15px;
 }
 
+.classicOptionElement,
+.killerOptionElement{
+    outline: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 12px 15px;
+    cursor: pointer;
+}
+
 .classicOptions__nav,
 .killerOptions__nav{
     width: 85%;
     margin: 0 auto;
-    
 }
 
-.classicOptions__nav__ul__li:first-child,
-.killerOptions__nav__ul__li:first-child{
+.classicOptionElement--first,
+.killerOptionElement--first{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-.classicOptions__nav__ul__li:last-child,
-.killerOptions__nav__ul__li:last-child{
+
+.classicOptionElement--last,
+.killerOptionElement--last{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
+
 .classicOptions__nav__ul__li,
 .killerOptions__nav__ul__li{
     width: 100%;
-    padding: 12px 15px;
+    /*
     background-color: var(--softWhite);
+    background-color: blue;
+    */
     cursor: pointer;
 }
 
-.classicOptions__nav__ul__li:hover,
-.killerOptions__nav__ul__li:hover{
-    background-color: var(--strongGray);
+.classicOptionElement:hover,
+.killerOptionElement:hover{
+    background-color: #d6e5f1;
 }
 
-.classicOptions__nav__ul__li a,
-.killerOptions__nav__ul__li a{
+.classicOptions__nav__ul__li button,
+.killerOptions__nav__ul__li button{
     display: flex;
     flex-direction: center;
     align-items: center;
 }
 
-.classicOptions__nav__ul__li a span,
-.killerOptions__nav__ul__li a span{
+.classicOptions__nav__ul__li button span,
+.killerOptions__nav__ul__li button span{
     display: block;
     margin-right: 10px;
     width: 20px;
     height: 20px;
 }
 
-.classicOptions__nav__ul__li a span{
+.classicOptions__nav__ul__li button span{
     background-image: url('/src/assets/icon/game-icons.webp');
     background-position: 99.4565% .6369%;
     background-size: 345.3333% 309.3333%;
 }
 
-.killerOptions__nav__ul__li a span{
+.killerOptions__nav__ul__li button span{
     background-image: url('/src/assets/icon/game-icons.webp');
     background-position: 99.4565% 49.0445%;
     background-size: 345.3333% 309.3333%;
 }
 
-.classicOptions__nav__ul__li a .classicOptions__nav__ul__li--restart,
-.killerOptions__nav__ul__li a .killerOptions__nav__ul__li--restart{
+.classicOptions__nav__ul__li button .classicOptions__nav__ul__li--restart,
+.killerOptions__nav__ul__li button .killerOptions__nav__ul__li--restart{
     background-position: 54.4378% 68.3453%;
     background-size: 287.7777% 249.4623%;
 }
 
-.classicOptions__nav__ul__li a p,
-.killerOptions__nav__ul__li a p{
+.classicOptions__nav__ul__li button p,
+.killerOptions__nav__ul__li button p{
     font-size: 1.6rem;
     font-weight: bold;
     color: #0071e3c2;

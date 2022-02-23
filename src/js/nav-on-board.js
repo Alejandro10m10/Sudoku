@@ -495,10 +495,8 @@ function undoMovement(arrayMovements){
 		lastParagraph.innerHTML = "";
 	}
 
-	if(arryMovementsLength !== 1){ 
-		arrayMovements.pop();
-		evalueateAllWrongInvolvedBoxes(getActualBoard(0));		
-	}
+	if(arryMovementsLength !== 1) arrayMovements.pop();
+	evalueateAllWrongInvolvedBoxes(getActualBoard(0));	
 }
 
 function removeColorInAllSameNumbers(){

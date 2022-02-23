@@ -1,4 +1,14 @@
-let classicBoards = [];
+let classicOptionsElements = document.querySelectorAll('.classicOptionElement');
+
+setSelectGameModeEvents(classicOptionsElements);
+
+function setSelectGameModeEvents(elements){
+	for(let element of elements) element.addEventListener('click', () => selectGameMode(element.value));
+}
+
+function selectGameMode(value){
+	console.log(value);
+}
 
 let emptyBoard = [
 	[0,0,0,0,0,0,0,0,0],
@@ -11,6 +21,8 @@ let emptyBoard = [
 	[0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0],
 ];
+
+/* classicBoards */
 
 let easyClassicBoards = [[
 	[8,7,0,5,4,9,0,0,0],
@@ -122,4 +134,12 @@ let evilClassicBoards = [[
 	[0,1,0,0,0,0,0,0,0],
 ]];
 
-classicBoards.push(easyClassicBoards, mediumClassicBoards, hardClassicBoards, expertClassicBoards);
+let classicBoards = {
+	'easyClassicBoards' : easyClassicBoards,
+	'mediumClassicBoards': mediumClassicBoards,
+	'hardClassicBoards': hardClassicBoards,
+	'expertClassicBoards': expertClassicBoards,
+	'evilClassicBoards': evilClassicBoards,
+};
+
+console.log(classicBoards);
