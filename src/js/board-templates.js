@@ -158,6 +158,11 @@ function setSelectGameModeEvents(elements, boardObject){
 }
 
 function selectGameMode(value, boardObject){
+	if(value === "restart"){
+		restartGame(board);
+		return;
+	}
+
 	let gameBoardsLength;
 
 	if(boardObject.hasOwnProperty(value)){
@@ -169,7 +174,7 @@ function selectGameMode(value, boardObject){
 
 	let randomBoard =  boardObject[value][[getRandomNumber(0, gameBoardsLength)]]; 
 	showGameModeMenu();
-	fillBoard(randomBoard);
+	restartGame(randomBoard);
 	return randomBoard;
 }
 

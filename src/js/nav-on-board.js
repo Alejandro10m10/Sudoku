@@ -739,3 +739,29 @@ function showHint(){
 		getAllSameNumbersSelected(rightNumber, allMiniBoxex, miniBoxSelected);
 	}
 }
+
+function restartGame(board){
+	fillBoard(board);
+	setDefaultInitialPosition();
+}
+
+function setDefaultInitialPosition(){
+	arrayMovements = [];
+	let defaultMiniBox = document.querySelector('#game__box__1-1');
+	let numberInMiniBox = defaultMiniBox.children[0].textContent;
+	let defaultBox = defaultMiniBox.parentElement;
+
+	document.querySelector('.box-selected').classList.remove('box-selected');	
+	document.querySelector('.box-inside-selected').classList.remove('box-inside-selected');	
+	removeSelectBoxInvolved();
+	removeColorInAllSameNumbers();	
+	removeColorInWrongInvolvedNumbers();
+
+	defaultMiniBox.classList.add('box-inside-selected');
+	defaultBox.classList.add('box-selected');
+
+	let allMiniBoxex = document.querySelectorAll('.game__box__inside');
+
+	getRowMiniBoxesInvolved(defaultMiniBox);
+	getAllSameNumbersSelected(numberInMiniBox, allMiniBoxex, defaultMiniBox);
+}
