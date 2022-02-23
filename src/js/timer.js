@@ -75,6 +75,7 @@ function playTimer(){
     timer();
     showPlayPauseButtons(false, true);
     showPauseOverlay(false);
+    putBackTemporallyElementsInBoard();
 }
 
 function showPlayPauseButtons(playValue, pauseValue){
