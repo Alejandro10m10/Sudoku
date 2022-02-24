@@ -16,6 +16,16 @@ let emptyBoard = [
 /* classicBoards */
 
 let easyClassicBoards = [[
+	[7,0,2,0,5,0,6,0,0],
+	[0,0,0,0,0,3,0,0,0],
+	[1,0,0,0,0,9,5,0,0],
+	[8,0,0,0,0,0,0,9,0],
+	[0,4,3,0,0,0,7,5,0],
+	[0,9,0,0,0,0,0,0,8],
+	[0,0,9,7,0,0,0,0,5],
+	[0,0,0,2,0,0,0,0,0],
+	[0,0,7,0,4,0,2,0,3],
+], [
 	[8,7,0,5,4,9,0,0,0],
 	[0,0,0,8,0,1,2,5,0],
 	[0,1,3,0,0,0,9,0,0],
@@ -35,16 +45,6 @@ let easyClassicBoards = [[
 	[6,4,9,0,3,1,0,5,7],
 	[5,0,0,6,0,0,0,0,4],
 	[8,0,7,5,0,9,0,0,0],
-], [
-	[7,0,2,0,5,0,6,0,0],
-	[0,0,0,0,0,3,0,0,0],
-	[1,0,0,0,0,9,5,0,0],
-	[8,0,0,0,0,0,0,9,0],
-	[0,4,3,0,0,0,7,5,0],
-	[0,9,0,0,0,0,0,0,8],
-	[0,0,9,7,0,0,0,0,5],
-	[0,0,0,2,0,0,0,0,0],
-	[0,0,7,0,4,0,2,0,3],
 ]];
 
 let mediumClassicBoards = [[
@@ -57,6 +57,16 @@ let mediumClassicBoards = [[
 	[0,4,0,0,6,1,0,0,5],
 	[0,0,2,7,5,0,1,8,0],
 	[0,0,5,0,0,3,0,0,0],
+], [
+	[8,0,0,0,0,0,9,0,0],
+	[0,5,0,0,1,0,4,3,0],
+	[0,0,9,0,0,2,8,0,5],
+	[0,3,2,4,0,0,6,0,8],
+	[0,0,0,0,2,0,0,0,3],
+	[0,0,0,0,0,0,0,9,1],
+	[0,0,7,9,0,0,5,8,0],
+	[9,1,0,6,0,0,3,0,0],
+	[0,8,0,0,4,0,0,7,0],
 ]];
 
 let hardClassicBoards = [[
@@ -147,6 +157,8 @@ function setSelectGameModeEvents(elements, boardObject){
 	for(let element of elements) element.addEventListener('click', () => selectGameMode(element.value, boardObject)); 
 }
 
+let lastBoardNumber = 0;
+
 function selectGameMode(value, boardObject){
 	if(value === "restart"){
 		showGameModeMenu();
@@ -162,7 +174,16 @@ function selectGameMode(value, boardObject){
 		return;
 	}
 
-	let randomBoard =  boardObject[value][[getRandomNumber(0, gameBoardsLength)]]; 
+	let randomNumber = 0;
+
+	while(lastBoardNumber === randomNumber) {
+		randomNumber = getRandomNumber(0, gameBoardsLength);
+	}
+
+	lastBoardNumber = randomNumber;
+
+	let randomBoard =  boardObject[value][[randomNumber]]; 
+	//let randomBoard = JSON.parse(JSON.stringify(boardObject[value][[randomNumber]]));
 	showGameModeMenu();
 	restartGame(randomBoard);
 }

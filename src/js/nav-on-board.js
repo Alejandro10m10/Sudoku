@@ -746,7 +746,7 @@ function showHint(){
 	if(!canErase(positionNumers, actualPosition)){
 		let rightNumber = finalBoard[row][column];
 		let miniBoxNumber = miniBoxSelected.children[0];
-		board[row][column] = rightNumber;
+		//board[row][column] = rightNumber;
 
 		miniBoxNumber.textContent = rightNumber;
 		miniBoxNumber.classList.remove('numberCollision');
@@ -760,10 +760,10 @@ function showHint(){
 }
 
 function restartGame(newboard){
-	fillBoard(newboard);
 	board = newboard;
 	finalBoard = JSON.parse(JSON.stringify(board));
 	solveBoard(finalBoard);
+	fillBoard(board);
 	setDefaultInitialPosition();
 }
 
