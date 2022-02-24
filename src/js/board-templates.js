@@ -48,16 +48,6 @@ let easyClassicBoards = [[
 ]];
 
 let mediumClassicBoards = [[
-	[7,1,2,0,2,6,0,0,0],
-	[0,6,5,0,0,0,7,0,1],
-	[0,0,0,0,0,7,4,6,0],
-	[0,5,0,0,0,8,0,0,0],
-	[0,7,2,0,4,0,8,0,0],
-	[9,0,8,0,0,3,0,7,6],
-	[0,0,0,3,8,0,0,0,4],
-	[0,0,0,0,0,0,0,0,8],
-	[4,8,3,0,0,0,2,1,7],
-], [
 	[0,6,8,1,0,9,0,0,0],
 	[0,0,1,0,0,0,8,0,4],
 	[0,0,0,0,3,8,0,9,1],
@@ -159,6 +149,7 @@ function setSelectGameModeEvents(elements, boardObject){
 
 function selectGameMode(value, boardObject){
 	if(value === "restart"){
+		showGameModeMenu();
 		restartGame(board);
 		return;
 	}
@@ -166,8 +157,7 @@ function selectGameMode(value, boardObject){
 	let gameBoardsLength;
 
 	if(boardObject.hasOwnProperty(value)){
-		gameBoardsLength = boardObject[value].length -1;
-		if(gameBoardsLength === 0) return; 
+		gameBoardsLength = boardObject[value].length-1;
 	} else {
 		return;
 	}
@@ -175,7 +165,6 @@ function selectGameMode(value, boardObject){
 	let randomBoard =  boardObject[value][[getRandomNumber(0, gameBoardsLength)]]; 
 	showGameModeMenu();
 	restartGame(randomBoard);
-	return randomBoard;
 }
 
 function getRandomNumber(min, max){

@@ -286,9 +286,6 @@ function putNumberInBoard(number){
 	}
 
 	boxParagraphNumber.innerHTML = number;
-	console.log(numberBefore);
-	console.log(number);
-	console.log(boxParagraphNumber);
 
 	if(!isThereAlreadyANumberInBox(board, getActualBoard(0))){
 		boxParagraphNumber.innerHTML = numberBefore;
@@ -547,6 +544,8 @@ function eraseMovement(){
 		removeColorInAllSameNumbers();	
 		removeColorInWrongInvolvedNumbers();
 	}
+
+	evalueateAllWrongInvolvedBoxes(getActualBoard(0));
 }
 
 function getMiniBoxPositionInBoard(actualBoard, miniBox){
@@ -756,10 +755,15 @@ function showHint(){
 		removeColorInAllSameNumbers();
 		getAllSameNumbersSelected(rightNumber, allMiniBoxex, miniBoxSelected);
 	}
+
+	evalueateAllWrongInvolvedBoxes(getActualBoard(0));
 }
 
-function restartGame(board){
-	fillBoard(board);
+function restartGame(newboard){
+	fillBoard(newboard);
+	board = newboard;
+	finalBoard = JSON.parse(JSON.stringify(board));
+	solveBoard(finalBoard);
 	setDefaultInitialPosition();
 }
 
