@@ -21,6 +21,7 @@ function init(){
 	addEventBoxListener(boxes);
     addEventsToBoxes(boxes, miniBoxes, addEventMiniBoxListener);
 	fillBoard(board);
+	setDefaultInitialPosition();
 }
 
 function addEventsToBoxes(boxes, miniBoxes, myCallback){
@@ -285,6 +286,9 @@ function putNumberInBoard(number){
 	}
 
 	boxParagraphNumber.innerHTML = number;
+	console.log(numberBefore);
+	console.log(number);
+	console.log(boxParagraphNumber);
 
 	if(!isThereAlreadyANumberInBox(board, getActualBoard(0))){
 		boxParagraphNumber.innerHTML = numberBefore;
@@ -510,6 +514,20 @@ function removeColorInWrongInvolvedNumbers(){
 	let allSameNumbers = document.querySelectorAll('.boxWrongColor');
 	for(let allSameNumber of allSameNumbers){
 		allSameNumber.classList.remove('boxWrongColor');
+	}
+}
+
+function removeColorInCollisionNumbers(){
+	let numberCollisions = document.querySelectorAll('.numberCollision');
+	for(let numberCollision of numberCollisions){
+		numberCollision.classList.remove('numberCollision');
+	}
+}
+
+function removeColorInSelectedNumbers(){
+	let selectedNumbers = document.querySelectorAll('.selectedNumber');
+	for(let selectedNumber of selectedNumbers){
+		selectedNumber.classList.remove('selectedNumber');
 	}
 }
 
@@ -756,6 +774,8 @@ function setDefaultInitialPosition(){
 	removeSelectBoxInvolved();
 	removeColorInAllSameNumbers();	
 	removeColorInWrongInvolvedNumbers();
+	removeColorInCollisionNumbers();
+	removeColorInSelectedNumbers();
 
 	defaultMiniBox.classList.add('box-inside-selected');
 	defaultBox.classList.add('box-selected');
