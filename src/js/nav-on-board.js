@@ -2,8 +2,11 @@ let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
 let btnUndoMovement = document.querySelector('#btnUndoMovement'),
 	btnEraseMovement = document.querySelector('#btnEraseMovement'),
 	btnCheckBox = document.querySelector('#checkMistakes').
-	btnHint = document.querySelector('#btnHint');
-let checkMistakesSelected = true; // Variable que nos permite conocer si el usuario activo o no activo la casilla
+	btnHint = document.querySelector('#btnHint'),
+	btnNotes = document.querySelector('#btnNotes');
+let checkMistakesSelected = true; // Variable that allows us to know if the user activated or not activated the mistake box
+let takeNote = false,
+	takeNoteSpan = document.querySelector('.game__controlls__item__offButton__span');
 
 // Variables to control the last movement on the board
 let arrayMovements = [];
@@ -12,6 +15,7 @@ btnUndoMovement.addEventListener('click', () => undoMovement(arrayMovements));
 btnEraseMovement.addEventListener('click', eraseMovement);
 btnCheckBox.addEventListener('click', checkMistakes);
 btnHint.addEventListener('click', showHint);
+btnNotes.addEventListener('click', takeNotes);
 
 /* Init the game */
 init();
@@ -580,6 +584,23 @@ function canErase(positionNumers, positionMiniBoxNumber){
 
 function checkMistakes(){
 	checkMistakesSelected = (!checkMistakesSelected);	
+}
+
+function takeNotes(){
+	takeNote = (!takeNote);	
+
+	if(takeNote){
+		btnNotes.classList.add('takeNotes');
+		btnNotes.classList.remove('notakeNotes');
+		takeNoteSpan.classList.add('takeNotesOn');
+		takeNoteSpan.innerHTML = "ON"
+	} else{
+		btnNotes.classList.remove('takeNotes');
+		btnNotes.classList.add('notakeNotes');
+		takeNoteSpan.classList.remove('takeNotesOn');
+		takeNoteSpan.innerHTML = "OFF"
+	}
+	
 }
 
 function isValidMovement(actualBoard, boxSelected, posibleNumber){

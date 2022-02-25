@@ -240,10 +240,6 @@ header{
 .classicOptions__nav__ul__li,
 .killerOptions__nav__ul__li{
     width: 100%;
-    /*
-    background-color: var(--softWhite);
-    background-color: blue;
-    */
     cursor: pointer;
 }
 
@@ -660,6 +656,12 @@ input:checked + .slider .toggleSwitch__icon:before{
     margin-bottom: 5px;
 }
 
+.game__controlls__item button:hover,
+.btnNumbers:hover{
+    background-color: var(--strongGray);
+    transition: 0.3s;
+}
+
 .game__controlls__item button svg{
     width: 100%;
     height: 100%;
@@ -688,6 +690,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     font-size: 1.2rem;
     color: var(--white);
     font-weight: bold;
+    padding-bottom: 1px;
 }
 
 .game__controlls__numbers{
@@ -706,8 +709,18 @@ input:checked + .slider .toggleSwitch__icon:before{
     background-color: var(--white);
 }
 
-.btnNumbers:hover{
-    background-color: var(--strongGray);
+.game__controlls__item .takeNotes{
+    border: 2.3px solid var(--strongBlue);
+    transition: 0.3s;
+}
+
+.game__controlls__item .notakeNotes{
+    border: 2.3px solid transparent;
+}
+
+.takeNotesOn{
+    transition: 0.3s;
+    background-color: var(--strongBlue);
 }
 
 .sameNumberSelected{
