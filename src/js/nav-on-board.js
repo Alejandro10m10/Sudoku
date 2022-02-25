@@ -16,6 +16,7 @@ btnEraseMovement.addEventListener('click', eraseMovement);
 btnCheckBox.addEventListener('click', checkMistakes);
 btnHint.addEventListener('click', showHint);
 btnNotes.addEventListener('click', takeNotes);
+takeNoteSpan.addEventListener('click', takeNotes);
 
 /* Init the game */
 init();

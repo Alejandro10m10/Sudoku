@@ -658,7 +658,7 @@ input:checked + .slider .toggleSwitch__icon:before{
 
 .game__controlls__item button:hover,
 .btnNumbers:hover{
-    background-color: var(--strongGray);
+    background-color: #cddeec;
     transition: 0.3s;
 }
 
@@ -691,6 +691,7 @@ input:checked + .slider .toggleSwitch__icon:before{
     color: var(--white);
     font-weight: bold;
     padding-bottom: 1px;
+    cursor: pointer;
 }
 
 .game__controlls__numbers{
