@@ -17,6 +17,7 @@ let board = [
 ];
 
 let finalBoard = JSON.parse(JSON.stringify(board));
+let garbageBoard = JSON.parse(JSON.stringify(board));
 
 /* Solve the sudoku board */
 function isNumberInRow(board, row, number){

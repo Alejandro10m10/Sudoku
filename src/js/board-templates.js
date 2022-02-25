@@ -162,7 +162,7 @@ let lastBoardNumber = 0;
 function selectGameMode(value, boardObject){
 	if(value === "restart"){
 		showGameModeMenu();
-		restartGame(board);
+		restartGame(garbageBoard);
 		return;
 	}
 
@@ -182,8 +182,8 @@ function selectGameMode(value, boardObject){
 
 	lastBoardNumber = randomNumber;
 
-	let randomBoard =  boardObject[value][[randomNumber]]; 
-	//let randomBoard = JSON.parse(JSON.stringify(boardObject[value][[randomNumber]]));
+	let randomBoard = JSON.parse(JSON.stringify(boardObject[value][[randomNumber]]));
+
 	showGameModeMenu();
 	restartGame(randomBoard);
 }
