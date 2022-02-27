@@ -1,9 +1,10 @@
 let arrayBoxRowInvolved = [], arrayBoxColumnInvolved=[];
 let btnUndoMovement = document.querySelector('#btnUndoMovement'),
 	btnEraseMovement = document.querySelector('#btnEraseMovement'),
-	btnCheckBox = document.querySelector('#checkMistakes').
+	btnCheckBox = document.querySelector('#checkMistakes'),
 	btnHint = document.querySelector('#btnHint'),
 	btnNotes = document.querySelector('#btnNotes');
+
 let checkMistakesSelected = true; // Variable that allows us to know if the user activated or not activated the mistake box
 let takeNote = false,
 	takeNoteSpan = document.querySelector('.game__controlls__item__offButton__span');
@@ -583,8 +584,40 @@ function canErase(positionNumers, positionMiniBoxNumber){
 	return false;
 }
 
+let allWrongNumbers = [];
+
 function checkMistakes(){
 	checkMistakesSelected = (!checkMistakesSelected);	
+
+	if(!checkMistakesSelected){
+		allWrongNumbers = getNumbersCollision();
+		
+		removeColorInCollisionNumbers();
+	} else{
+		let actualBoard = getActualBoard(1);
+
+		for(let box of actualBoard){
+			for(let i = 0; i < box.length ; i++){
+				for(let j = 0 ; j < allWrongNumbers.length; j++){
+					if(box[i] == allWrongNumbers[j] ){
+						box[i].children[0].classList.add('numberCollision');
+					}
+				}
+			}
+		}
+		
+	}
+}
+
+function getNumbersCollision(){
+	let allWrongNumbers = [];
+
+	let allWrongInvolvedElements = document.querySelectorAll('.numberCollision');
+	for(let allWrongInvolvedElement of allWrongInvolvedElements){
+		let miniBoxEnvolved = allWrongInvolvedElement.parentElement;
+		allWrongNumbers.push(miniBoxEnvolved);
+	}
+	return allWrongNumbers;
 }
 
 function takeNotes(){
